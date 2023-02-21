@@ -12,8 +12,6 @@ import GameplayKit
 class GameViewController: UIViewController {
     var tileSize: Double = 0
     var boardTiles: [[BoardTile]] = []
-    let numberOfRows = 2
-    let numberOfColumns = 7
     
     @IBOutlet weak var boardView: UIView!
 
@@ -53,9 +51,11 @@ class GameViewController: UIViewController {
         let boardWidth = Double(boardView.frame.width)
         tileSize = Double(boardWidth) / Double(numberOfColumns)
         createTilesBoard()
+        updateTiles()
 //        restart()
     }
     
+    // Put tiles in board
     func createTilesBoard() {
         for row in 0..<numberOfRows {
             var newRow: [BoardTile] = []
@@ -66,6 +66,15 @@ class GameViewController: UIViewController {
                 newRow += [BoardTile(tileNo: 1, imageView: tileImageView)]
             }
             boardTiles += [newRow]
+        }
+    }
+    
+    func updateTiles() {
+        for row in 0..<numberOfRows {
+            for column in 0..<numberOfColumns {
+                let tileNo = Int.random(in: tileNoRange)
+                boardTiles[row][column].tileNo = tileNo
+            }
         }
     }
 }
