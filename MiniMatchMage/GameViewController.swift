@@ -113,22 +113,38 @@ class GameViewController: UIViewController {
         }
     }
     
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        guard let touch = touches.first else { return }
+//
+//    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
-        for (row, boardTilesRow) in boardTiles.enumerated() {
-            for (column, currentTile) in boardTilesRow.enumerated() {
-                if currentTile.imageView == touch.view {
-//                    print(firstTileRow)
-//                    print(firstTileColumn)
-//                    print(row)
-//                    print(column)
-                    if (row == firstTileRow && column == firstTileColumn) {
-                        singleMatch(row, column)
-                    }
-                    
-                }
-            }
+        let pos = touch.location(in: self.boardView)
+        let row = firstTileRow
+        let column = firstTileColumn
+        let closedRow = 1 - row
+        if boardTiles[row][column].imageView.frame.contains(pos) {
+            singleMatch(row, column)
+        } else if boardTiles[closedRow][column].imageView.frame.contains(pos) {
+            doubleMatch(row, closedRow, column, column)
+        } else if column-1>=0 && boardTiles[row][column-1].imageView.frame.contains(pos) {
+            doubleMatch(row, row, column, column-1)
+        } else if column+1<=numberOfColumns-1 && boardTiles[row][column+1].imageView.frame.contains(pos) {
+            doubleMatch(row, row, column, column+1)
+        } else if column-1>=0 && boardTiles[closedRow][column-1].imageView.frame.contains(pos) {
+            squareMatch(column, column-1)
+        } else if column+1<=numberOfColumns-1 && boardTiles[closedRow][column+1].imageView.frame.contains(pos) {
+            squareMatch(column, column+1)
         }
+    }
+    
+    func doubleMatch(_ row1: Int, _ row2: Int, _ column1: Int, _ column2: Int) {
+        print("Double")
+    }
+    
+    func squareMatch(_ column1: Int, _ column2: Int) {
+        print("Square")
     }
     
     func singleMatch(_ row: Int, _ column: Int) {
@@ -149,7 +165,6 @@ class GameViewController: UIViewController {
             currentTile.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
             currentTile.imageView.frame.origin.x += CGFloat(numberOfColumns - column) * self.tileSize
             self.boardTiles[row][numberOfColumns - 1] = currentTile
-            
         }
     }
 }
