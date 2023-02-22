@@ -129,25 +129,51 @@ class GameViewController: UIViewController {
         } else if boardTiles[closedRow][column].imageView.frame.contains(pos) {
             doubleMatch(row, closedRow, column, column)
         } else if column-1>=0 && boardTiles[row][column-1].imageView.frame.contains(pos) {
-            doubleMatch(row, row, column, column-1)
+            doubleMatch(row, row, column-1, column)
         } else if column+1<=numberOfColumns-1 && boardTiles[row][column+1].imageView.frame.contains(pos) {
             doubleMatch(row, row, column, column+1)
         } else if column-1>=0 && boardTiles[closedRow][column-1].imageView.frame.contains(pos) {
-            squareMatch(column, column-1)
+            squareMatch(column-1, column)
         } else if column+1<=numberOfColumns-1 && boardTiles[closedRow][column+1].imageView.frame.contains(pos) {
             squareMatch(column, column+1)
         }
     }
     
+    func singleMatch(_ row: Int, _ column: Int) {
+        removeTile(row, column)
+    }
+    
     func doubleMatch(_ row1: Int, _ row2: Int, _ column1: Int, _ column2: Int) {
-        print("Double")
+        let tiles = [boardTiles[row1][column1], boardTiles[row2][column2]]
+        if checkMatch(tiles) {
+            removeTile(row1, column1)
+            removeTile(row2, column2)
+        }
     }
     
     func squareMatch(_ column1: Int, _ column2: Int) {
-        print("Square")
+        let tiles = [boardTiles[0][column1], boardTiles[0][column2], boardTiles[1][column1], boardTiles[1][column2]]
+        if checkMatch(tiles) {
+            removeTile(0, column1)
+            removeTile(1, column1)
+            removeTile(0, column2)
+            removeTile(1, column2)
+        }
     }
     
-    func singleMatch(_ row: Int, _ column: Int) {
+    func checkMatch(_ tiles: [BoardTile]) -> Bool {
+        let tileNo = tiles.first?.tileNo
+        var result: Bool = true
+        for tile in tiles {
+            if tile.tileNo != tileNo {
+                result = false
+                break
+            }
+        }
+        return result
+    }
+    
+    func removeTile(_ row: Int, _ column: Int) {
         var currentTile = boardTiles[row][column]
         UIView.animate(withDuration: clearTileAnimateDuration) {
             currentTile.imageView.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
