@@ -139,10 +139,12 @@ class GameViewController: UIViewController {
         }
     }
     
+    // Single match tile
     func singleMatch(_ row: Int, _ column: Int) {
         removeTile(row, column)
     }
     
+    // Double match tiles in line
     func doubleMatch(_ row1: Int, _ row2: Int, _ column1: Int, _ column2: Int) {
         let tiles = [boardTiles[row1][column1], boardTiles[row2][column2]]
         if checkMatch(tiles) {
@@ -155,6 +157,7 @@ class GameViewController: UIViewController {
         }
     }
     
+    // Square match four tiles in square
     func squareMatch(_ column1: Int, _ column2: Int) {
         let tiles = [boardTiles[0][column1], boardTiles[0][column2], boardTiles[1][column1], boardTiles[1][column2]]
         if checkMatch(tiles) {
