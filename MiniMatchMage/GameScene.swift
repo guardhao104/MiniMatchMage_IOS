@@ -15,6 +15,8 @@ class GameScene: SKScene {
     
     var player : SKSpriteNode!
     var enemy1 : SKSpriteNode!
+    var enemy2 : SKSpriteNode!
+    var enemy3 : SKSpriteNode!
     
     private var playerAtlas: SKTextureAtlas {
         return SKTextureAtlas(named: "Player1Animation")
@@ -94,8 +96,13 @@ class GameScene: SKScene {
     private func setupEnemy1() {
         enemy1 = SKSpriteNode(texture: enemy1Texture, size: CGSize(width: 250, height: 250))
         enemy1.position = CGPoint(x: 200, y : 100)
-        
+        enemy2 = SKSpriteNode(texture: enemy1Texture, size: CGSize(width: 250, height: 250))
+        enemy2.position = CGPoint(x: 120, y : 100)
+        enemy3 = SKSpriteNode(texture: enemy1Texture, size: CGSize(width: 250, height: 250))
+        enemy3.position = CGPoint(x: 280, y : 100)
         addChild(enemy1)
+        addChild(enemy2)
+        addChild(enemy3)
     }
     
     func startAttackAnimation() {
@@ -124,6 +131,8 @@ class GameScene: SKScene {
         let idleAnimation = SKAction.animate(with: enemy1IdleTextures, timePerFrame: 0.1)
         
         enemy1.run(SKAction.repeatForever(idleAnimation), withKey: "enemy1IdleTextures")
+        enemy2.run(SKAction.repeatForever(idleAnimation), withKey: "enemy1IdleTextures")
+        enemy3.run(SKAction.repeatForever(idleAnimation), withKey: "enemy1IdleTextures")
     }
     
     override func didMove(to view: SKView) {
