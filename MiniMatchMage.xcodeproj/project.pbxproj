@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3795F0F29A61588007AD66D /* GameCombat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3795F0E29A61588007AD66D /* GameCombat.swift */; };
+		A3795F1129A6FED3007AD66D /* combatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3795F1029A6FED3007AD66D /* combatData.swift */; };
 		B6B1154629A46D2D00E0725C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1154529A46D2D00E0725C /* AppDelegate.swift */; };
 		B6B1154829A46D2D00E0725C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B6B1154729A46D2D00E0725C /* GameScene.sks */; };
 		B6B1154A29A46D2D00E0725C /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = B6B1154929A46D2D00E0725C /* Actions.sks */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A3795F0E29A61588007AD66D /* GameCombat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCombat.swift; sourceTree = "<group>"; };
+		A3795F1029A6FED3007AD66D /* combatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = combatData.swift; sourceTree = "<group>"; };
 		B6B1154229A46D2D00E0725C /* MiniMatchMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMatchMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6B1154529A46D2D00E0725C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6B1154729A46D2D00E0725C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 				B6B1154729A46D2D00E0725C /* GameScene.sks */,
 				B6B1154929A46D2D00E0725C /* Actions.sks */,
 				B6B1154B29A46D2D00E0725C /* GameScene.swift */,
+				A3795F1029A6FED3007AD66D /* combatData.swift */,
+				A3795F0E29A61588007AD66D /* GameCombat.swift */,
 				B6B1154D29A46D2D00E0725C /* GameViewController.swift */,
 				B6B1156529A4919600E0725C /* Constants.swift */,
 				B6B1155C29A477B700E0725C /* BoardTile.swift */,
@@ -151,9 +157,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6B1156629A4919600E0725C /* Constants.swift in Sources */,
+				A3795F0F29A61588007AD66D /* GameCombat.swift in Sources */,
 				B6B1155D29A477B700E0725C /* BoardTile.swift in Sources */,
 				B6B1154C29A46D2D00E0725C /* GameScene.swift in Sources */,
 				B6B1154E29A46D2D00E0725C /* GameViewController.swift in Sources */,
+				A3795F1129A6FED3007AD66D /* combatData.swift in Sources */,
 				B6B1154629A46D2D00E0725C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
