@@ -139,25 +139,30 @@ class GameViewController: UIViewController {
         }
     }
     
+    // Single match tile
     func singleMatch(_ row: Int, _ column: Int) {
         removeTile(row, column)
     }
     
+    // Double match tiles in line
     func doubleMatch(_ row1: Int, _ row2: Int, _ column1: Int, _ column2: Int) {
         let tiles = [boardTiles[row1][column1], boardTiles[row2][column2]]
         if checkMatch(tiles) {
-            removeTile(row1, column1)
-            removeTile(row2, column2)
+            if row1 == row2 {
+                removeTwoTiles(row1, column1, column2)
+            } else {
+                removeTile(row1, column1)
+                removeTile(row2, column2)
+            }
         }
     }
     
+    // Square match four tiles in square
     func squareMatch(_ column1: Int, _ column2: Int) {
         let tiles = [boardTiles[0][column1], boardTiles[0][column2], boardTiles[1][column1], boardTiles[1][column2]]
         if checkMatch(tiles) {
-            removeTile(0, column1)
-            removeTile(1, column1)
-            removeTile(0, column2)
-            removeTile(1, column2)
+            removeTwoTiles(0, column1, column2)
+            removeTwoTiles(1, column1, column2)
         }
     }
     
@@ -191,6 +196,34 @@ class GameViewController: UIViewController {
             currentTile.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
             currentTile.imageView.frame.origin.x += CGFloat(numberOfColumns - column) * self.tileSize
             self.boardTiles[row][numberOfColumns - 1] = currentTile
+        }
+    }
+    
+    func removeTwoTiles(_ row: Int, _ column1: Int, _ column2: Int) {
+        var currentTile1 = boardTiles[row][column1]
+        var currentTile2 = boardTiles[row][column2]
+        UIView.animate(withDuration: clearTileAnimateDuration) {
+            currentTile1.imageView.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
+            currentTile2.imageView.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + clearTileAnimateDuration) {
+            UIView.animate(withDuration: moveTileAnimateDuration) {
+                for columnToMove in ((column2 + 1)..<numberOfColumns) {
+                    let tile = self.boardTiles[row][columnToMove]
+                    tile.imageView.frame.origin.x -= self.tileSize * 2
+                    self.boardTiles[row][columnToMove - 2] = tile
+                }
+                currentTile1.imageView.frame.origin.x -= self.tileSize * 2
+                currentTile1.tileNo = Int.random(in: tileNoRange)
+                currentTile2.imageView.frame.origin.x -= self.tileSize * 2
+                currentTile2.tileNo = Int.random(in: tileNoRange)
+            }
+            currentTile1.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+            currentTile2.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+            currentTile1.imageView.frame.origin.x += CGFloat(numberOfColumns - column1) * self.tileSize
+            currentTile2.imageView.frame.origin.x += CGFloat(numberOfColumns - column2 + 1) * self.tileSize
+            self.boardTiles[row][numberOfColumns - 2] = currentTile1
+            self.boardTiles[row][numberOfColumns - 1] = currentTile2
         }
     }
 }
