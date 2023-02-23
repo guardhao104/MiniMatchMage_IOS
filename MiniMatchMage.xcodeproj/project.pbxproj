@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		425DD74F29A6014A00733FB4 /* PlayerStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425DD74E29A6014A00733FB4 /* PlayerStateMachine.swift */; };
 		B6B1154629A46D2D00E0725C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1154529A46D2D00E0725C /* AppDelegate.swift */; };
 		B6B1154829A46D2D00E0725C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B6B1154729A46D2D00E0725C /* GameScene.sks */; };
 		B6B1154A29A46D2D00E0725C /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = B6B1154929A46D2D00E0725C /* Actions.sks */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		425DD74E29A6014A00733FB4 /* PlayerStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateMachine.swift; sourceTree = "<group>"; };
 		B6B1154229A46D2D00E0725C /* MiniMatchMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMatchMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6B1154529A46D2D00E0725C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6B1154729A46D2D00E0725C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				B6B1155C29A477B700E0725C /* BoardTile.swift */,
 				B6B1154F29A46D2D00E0725C /* Main.storyboard */,
 				B6B1155229A46D2F00E0725C /* Assets.xcassets */,
+				425DD74E29A6014A00733FB4 /* PlayerStateMachine.swift */,
 				B6B1155429A46D2F00E0725C /* LaunchScreen.storyboard */,
 			);
 			path = MiniMatchMage;
@@ -154,6 +157,7 @@
 				B6B1155D29A477B700E0725C /* BoardTile.swift in Sources */,
 				B6B1154C29A46D2D00E0725C /* GameScene.swift in Sources */,
 				B6B1154E29A46D2D00E0725C /* GameViewController.swift in Sources */,
+				425DD74F29A6014A00733FB4 /* PlayerStateMachine.swift in Sources */,
 				B6B1154629A46D2D00E0725C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
