@@ -20,12 +20,16 @@ class GameScene: SKScene {
         return SKTextureAtlas(named: "Player1Animation")
     }
     
-//    private var enemy1Atlas: SKTextureAtlas {
-//        return SKTextureAtlas
-//    }
+    private var enemy1Atlas: SKTextureAtlas {
+        return SKTextureAtlas(named: "Enemy1Animation")
+    }
 
     private var playerTexture: SKTexture {
         return playerAtlas.textureNamed("Player1Animation")
+    }
+    
+    private var enemy1Texture: SKTexture {
+        return enemy1Atlas.textureNamed("Enemy1Animation")
     }
     
     private var playerAttackTextures: [SKTexture] {
@@ -47,14 +51,51 @@ class GameScene: SKScene {
         ]
     }
     
+    private var enemy1AttackTextures: [SKTexture] {
+        return [
+            enemy1Atlas.textureNamed("enemy_1_attack_0"),
+            enemy1Atlas.textureNamed("enemy_1_attack_1"),
+            enemy1Atlas.textureNamed("enemy_1_attack_2"),
+            enemy1Atlas.textureNamed("enemy_1_attack_3"),
+            enemy1Atlas.textureNamed("enemy_1_attack_4"),
+            enemy1Atlas.textureNamed("enemy_1_attack_5"),
+            enemy1Atlas.textureNamed("enemy_1_attack_6"),
+            enemy1Atlas.textureNamed("enemy_1_attack_7"),
+            enemy1Atlas.textureNamed("enemy_1_attack_8"),
+            enemy1Atlas.textureNamed("enemy_1_attack_9"),
+            enemy1Atlas.textureNamed("enemy_1_attack_10")
+        ]
+    }
+    
+    private var enemy1IdleTextures: [SKTexture] {
+        return [
+            enemy1Atlas.textureNamed("enemy_1_idle_0"),
+            enemy1Atlas.textureNamed("enemy_1_idle_1"),
+            enemy1Atlas.textureNamed("enemy_1_idle_2"),
+            enemy1Atlas.textureNamed("enemy_1_idle_3"),
+            enemy1Atlas.textureNamed("enemy_1_idle_4"),
+            enemy1Atlas.textureNamed("enemy_1_idle_5"),
+            enemy1Atlas.textureNamed("enemy_1_idle_6"),
+            enemy1Atlas.textureNamed("enemy_1_idle_7"),
+            enemy1Atlas.textureNamed("enemy_1_idle_8")
+        ]
+    }
+    
     // set up the image
-    private func setupPlayerIdle() {
+    private func setupPlayer() {
         // set the texture size
         player = SKSpriteNode(texture: playerTexture, size: CGSize(width: 350, height: 350))
       // set the texture position
         player.position = CGPoint(x: -250, y: 100)
         
         addChild(player)
+    }
+    
+    private func setupEnemy1() {
+        enemy1 = SKSpriteNode(texture: enemy1Texture, size: CGSize(width: 250, height: 250))
+        enemy1.position = CGPoint(x: 200, y : 100)
+        
+        addChild(enemy1)
     }
     
     func startAttackAnimation() {
@@ -64,6 +105,12 @@ class GameScene: SKScene {
         // run the animation
         player.run(SKAction.repeatForever(attackAnimation), withKey: "playerAttackTextures")
     }
+    
+    func startEnemy1AttackAnimation() {
+        let attackAnimation = SKAction.animate(with: enemy1AttackTextures, timePerFrame: 0.1)
+        
+        enemy1.run(SKAction.repeatForever(attackAnimation), withKey: "enemy1AttackTextures")
+    }
 
     func startIdleAnimation() {
         // set the animation duration
@@ -71,6 +118,12 @@ class GameScene: SKScene {
 
         // run the animation
         player.run(SKAction.repeatForever(idleAnimation), withKey: "playerIdleTextures")
+    }
+    
+    func startEnemy1IdleAnimation() {
+        let idleAnimation = SKAction.animate(with: enemy1IdleTextures, timePerFrame: 0.1)
+        
+        enemy1.run(SKAction.repeatForever(idleAnimation), withKey: "enemy1IdleTextures")
     }
     
     override func didMove(to view: SKView) {
@@ -95,9 +148,12 @@ class GameScene: SKScene {
                                               SKAction.removeFromParent()]))
         }
         
-        self.setupPlayerIdle()
-        self.startAttackAnimation()
-//        self.startIdleAnimation()
+        self.setupPlayer()
+        self.startIdleAnimation()
+//        self.startAttackAnimation()
+        self.setupEnemy1()
+        self.startEnemy1IdleAnimation()
+//        self.startEnemy1AttackAnimation()
     }
     
     
