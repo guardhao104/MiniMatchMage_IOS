@@ -12,6 +12,7 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    private var background = SKSpriteNode(imageNamed: "bg1.jpeg")
     
     var player : SKSpriteNode!
     var enemy1 : SKSpriteNode!
@@ -156,6 +157,13 @@ class GameScene: SKScene {
                                               SKAction.fadeOut(withDuration: 0.5),
                                               SKAction.removeFromParent()]))
         }
+        
+        background.position = CGPoint(x: 0, y: 260)
+        background.size.width = self.size.width
+        background.size.height = self.size.height
+        background.anchorPoint = CGPoint(x: 0.5,y: 0.5)
+
+        self.addChild(background)
         
         self.setupPlayer()
         self.startIdleAnimation()
