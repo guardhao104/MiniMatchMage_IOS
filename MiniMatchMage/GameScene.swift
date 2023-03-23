@@ -12,7 +12,7 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    private var background = SKSpriteNode(imageNamed: "bg1.jpeg")
+    private var background = SKSpriteNode(imageNamed: "bg1.jpeg") // background image
     
     var player : SKSpriteNode!
     var enemy1 : SKSpriteNode!
@@ -35,6 +35,7 @@ class GameScene: SKScene {
         return enemy1Atlas.textureNamed("Enemy1Animation")
     }
     
+    // add enemy attack animation into playerAtlas
     private var playerAttackTextures: [SKTexture] {
         return [
             playerAtlas.textureNamed("attack_1"),
@@ -45,6 +46,7 @@ class GameScene: SKScene {
         ]
     }
     
+    // add enemy idle animation into playerAtlas
     private var playerIdleTextures: [SKTexture] {
         return [
             playerAtlas.textureNamed("idle_1"),
@@ -54,6 +56,7 @@ class GameScene: SKScene {
         ]
     }
     
+    // add enemy attack animation into ememy1Atlas
     private var enemy1AttackTextures: [SKTexture] {
         return [
             enemy1Atlas.textureNamed("enemy_1_attack_0"),
@@ -70,6 +73,7 @@ class GameScene: SKScene {
         ]
     }
     
+    // add enemy idle animation into ememy1Atlas
     private var enemy1IdleTextures: [SKTexture] {
         return [
             enemy1Atlas.textureNamed("enemy_1_idle_0"),
@@ -84,16 +88,17 @@ class GameScene: SKScene {
         ]
     }
     
-    // set up the image
+    // set up the player image
     private func setupPlayer() {
         // set the texture size
         player = SKSpriteNode(texture: playerTexture, size: CGSize(width: 350, height: 350))
-      // set the texture position
+        // set the texture position
         player.position = CGPoint(x: -250, y: 100)
         
         addChild(player)
     }
     
+    // set up the enemy image
     private func setupEnemy1() {
         enemy1 = SKSpriteNode(texture: enemy1Texture, size: CGSize(width: 250, height: 250))
         enemy1.position = CGPoint(x: 200, y : 100)
@@ -106,6 +111,7 @@ class GameScene: SKScene {
         addChild(enemy3)
     }
     
+    // trigger player attack animation
     func startAttackAnimation() {
         // set the animation duration
         let attackAnimation = SKAction.animate(with: playerAttackTextures, timePerFrame: 0.1)
@@ -114,12 +120,14 @@ class GameScene: SKScene {
         player.run(SKAction.repeatForever(attackAnimation), withKey: "playerAttackTextures")
     }
     
+    // trigger enemy attack animation
     func startEnemy1AttackAnimation() {
         let attackAnimation = SKAction.animate(with: enemy1AttackTextures, timePerFrame: 0.1)
         
         enemy1.run(SKAction.repeatForever(attackAnimation), withKey: "enemy1AttackTextures")
     }
 
+    // trigger player idle animation
     func startIdleAnimation() {
         // set the animation duration
         let idleAnimation = SKAction.animate(with: playerIdleTextures, timePerFrame: 0.1)
@@ -128,12 +136,23 @@ class GameScene: SKScene {
         player.run(SKAction.repeatForever(idleAnimation), withKey: "playerIdleTextures")
     }
     
+    // trigger enemy idle animation
     func startEnemy1IdleAnimation() {
         let idleAnimation = SKAction.animate(with: enemy1IdleTextures, timePerFrame: 0.1)
         
         enemy1.run(SKAction.repeatForever(idleAnimation), withKey: "enemy1IdleTextures")
         enemy2.run(SKAction.repeatForever(idleAnimation), withKey: "enemy1IdleTextures")
         enemy3.run(SKAction.repeatForever(idleAnimation), withKey: "enemy1IdleTextures")
+    }
+    
+    // set background image onto screen
+    func setBackgroundImage() {
+        background.position = CGPoint(x: 0, y: 260)
+        background.size.width = self.size.width
+        background.size.height = self.size.height
+        background.anchorPoint = CGPoint(x: 0.5,y: 0.5)
+
+        self.addChild(background)
     }
     
     override func didMove(to view: SKView) {
@@ -158,12 +177,7 @@ class GameScene: SKScene {
                                               SKAction.removeFromParent()]))
         }
         
-        background.position = CGPoint(x: 0, y: 260)
-        background.size.width = self.size.width
-        background.size.height = self.size.height
-        background.anchorPoint = CGPoint(x: 0.5,y: 0.5)
-
-        self.addChild(background)
+        setBackgroundImage();
         
         self.setupPlayer()
         self.startIdleAnimation()
