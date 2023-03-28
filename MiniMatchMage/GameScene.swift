@@ -23,6 +23,9 @@ class GameScene: SKScene {
     private let demon = Demon()
     private let demon1 = Demon()
     private let demon2 = Demon()
+    private let skeletonBomber = SkeletonBomber()
+    private let skeletonBomber1 = SkeletonBomber()
+    private let skeletonBomber2 = SkeletonBomber()
     
     // set background image onto screen
     func setBackgroundImage() {
@@ -82,17 +85,29 @@ class GameScene: SKScene {
 //        catWitch1.startAttackAnimation()
 //        catWitch2.startHitAnimation()
         
-        demon.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
-        demon1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
-        demon2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+//        demon.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
+//        demon1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
+//        demon2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+//
+//        addChild(demon)
+//        addChild(demon1)
+//        addChild(demon2)
+//
+//        demon.startIdleAnimation()
+//        demon1.startAttackAnimation()
+//        demon2.startHitAnimation()
         
-        addChild(demon)
-        addChild(demon1)
-        addChild(demon2)
-        
-        demon.startIdleAnimation()
-        demon1.startAttackAnimation()
-        demon2.startHitAnimation()
+        skeletonBomber.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
+        skeletonBomber1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
+        skeletonBomber2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+
+        addChild(skeletonBomber)
+        addChild(skeletonBomber1)
+        addChild(skeletonBomber2)
+
+        skeletonBomber.startIdleAnimation()
+        skeletonBomber1.startAttackAnimation()
+        skeletonBomber2.startHitAnimation()
     }
     
     
