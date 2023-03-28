@@ -52,6 +52,7 @@ class GameViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        var enemysetting = getEnemy(levelofGame: 1)
         let boardWidth = Double(boardView.frame.width)
         tileSize = Double(boardWidth) / Double(numberOfColumns)
         createTilesBoard()
@@ -140,9 +141,28 @@ class GameViewController: UIViewController {
         }
     }
     
+    // cast(int id, int num){switch  cast}
+    func playerAttack(_ tileId: Int, _ num: Int){
+        switch tileId{
+        case 1:
+            castSpell("fire",num)
+            print("castfire", num)
+        case 2:
+            castSpell("water",num)
+            print("castwater",num)
+        case 3:
+            castSpell("wind",num)
+            print("castwind",num)
+        default:
+            print("Invalid cast")
+        }
+    }
+    
     // Single match tile
     func singleMatch(_ row: Int, _ column: Int) {
         removeTile(row, column)
+        playerAttack(boardTiles[row][column].tileNo,1)
+        
     }
     
     // Double match tiles in line
@@ -156,6 +176,7 @@ class GameViewController: UIViewController {
                 removeTile(row2, column2)
             }
         }
+        playerAttack(boardTiles[row1][column1].tileNo,2)
     }
     
     // Square match four tiles in square
@@ -165,6 +186,7 @@ class GameViewController: UIViewController {
             removeTwoTiles(0, column1, column2)
             removeTwoTiles(1, column1, column2)
         }
+        playerAttack(boardTiles[0][column1].tileNo,3)
     }
     
     func checkMatch(_ tiles: [BoardTile]) -> Bool {
