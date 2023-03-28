@@ -26,6 +26,9 @@ class GameScene: SKScene {
     private let skeletonBomber = SkeletonBomber()
     private let skeletonBomber1 = SkeletonBomber()
     private let skeletonBomber2 = SkeletonBomber()
+    private let werewolfWarrior = WerewolfWarrior()
+    private let werewolfWarrior1 = WerewolfWarrior()
+    private let werewolfWarrior2 = WerewolfWarrior()
     
     // set background image onto screen
     func setBackgroundImage() {
@@ -97,17 +100,29 @@ class GameScene: SKScene {
 //        demon1.startAttackAnimation()
 //        demon2.startHitAnimation()
         
-        skeletonBomber.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
-        skeletonBomber1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
-        skeletonBomber2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+//        skeletonBomber.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
+//        skeletonBomber1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
+//        skeletonBomber2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+//
+//        addChild(skeletonBomber)
+//        addChild(skeletonBomber1)
+//        addChild(skeletonBomber2)
+//
+//        skeletonBomber.startIdleAnimation()
+//        skeletonBomber1.startAttackAnimation()
+//        skeletonBomber2.startHitAnimation()
+        
+        werewolfWarrior.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
+        werewolfWarrior1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
+        werewolfWarrior2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
 
-        addChild(skeletonBomber)
-        addChild(skeletonBomber1)
-        addChild(skeletonBomber2)
+        addChild(werewolfWarrior)
+        addChild(werewolfWarrior1)
+        addChild(werewolfWarrior2)
 
-        skeletonBomber.startIdleAnimation()
-        skeletonBomber1.startAttackAnimation()
-        skeletonBomber2.startHitAnimation()
+        werewolfWarrior.startIdleAnimation()
+        werewolfWarrior1.startAttackAnimation()
+        werewolfWarrior2.startHitAnimation()
     }
     
     

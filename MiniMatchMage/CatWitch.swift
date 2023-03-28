@@ -69,16 +69,16 @@ class CatWitch: Enemy {
     
     // trigger enemy idle animation
     func startIdleAnimation() {
-        super.triggerAnimation(texture:catWitchIdleTextures, key:"fairyIdleTextures")
+        super.triggerAnimation(texture:catWitchIdleTextures, key:"catWitchIdleTextures")
     }
     
     // trigger enemy attack animation
     func startAttackAnimation() {
-        super.triggerAnimation(texture:catWitchAttackTextures, key:"fairyAttackTextures")
+        super.triggerAnimation(texture:catWitchAttackTextures, key:"catWitchAttackTextures")
     }
     
     // trigger animation when get hit
     func startHitAnimation() {
-        super.triggerAnimation(texture:catWitchHitTextures, key:"fairyHitTextures")
+        super.triggerAnimation(texture:catWitchHitTextures, key:"catWitchHitTextures")
     }
 }

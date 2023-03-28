@@ -14,6 +14,7 @@
 		42A78FB229D288340068FD5B /* CatWitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB129D288340068FD5B /* CatWitch.swift */; };
 		42A78FB429D28FBC0068FD5B /* Demon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB329D28FBB0068FD5B /* Demon.swift */; };
 		42A78FB629D294870068FD5B /* SkeletonBomber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB529D294870068FD5B /* SkeletonBomber.swift */; };
+		42A78FB829D29A480068FD5B /* WerewolfWarrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB729D29A480068FD5B /* WerewolfWarrior.swift */; };
 		B6B1154629A46D2D00E0725C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1154529A46D2D00E0725C /* AppDelegate.swift */; };
 		B6B1154829A46D2D00E0725C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B6B1154729A46D2D00E0725C /* GameScene.sks */; };
 		B6B1154A29A46D2D00E0725C /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = B6B1154929A46D2D00E0725C /* Actions.sks */; };
@@ -34,6 +35,7 @@
 		42A78FB129D288340068FD5B /* CatWitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatWitch.swift; sourceTree = "<group>"; };
 		42A78FB329D28FBB0068FD5B /* Demon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demon.swift; sourceTree = "<group>"; };
 		42A78FB529D294870068FD5B /* SkeletonBomber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonBomber.swift; sourceTree = "<group>"; };
+		42A78FB729D29A480068FD5B /* WerewolfWarrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WerewolfWarrior.swift; sourceTree = "<group>"; };
 		B6B1154229A46D2D00E0725C /* MiniMatchMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMatchMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6B1154529A46D2D00E0725C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6B1154729A46D2D00E0725C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				42A78FB129D288340068FD5B /* CatWitch.swift */,
 				42A78FB329D28FBB0068FD5B /* Demon.swift */,
 				42A78FB529D294870068FD5B /* SkeletonBomber.swift */,
+				42A78FB729D29A480068FD5B /* WerewolfWarrior.swift */,
 				B6B1154B29A46D2D00E0725C /* GameScene.swift */,
 				B6B1154D29A46D2D00E0725C /* GameViewController.swift */,
 				B6B1156529A4919600E0725C /* Constants.swift */,
@@ -173,6 +176,7 @@
 			files = (
 				42A78FAC29CD043A0068FD5B /* Fairy.swift in Sources */,
 				B6B1156629A4919600E0725C /* Constants.swift in Sources */,
+				42A78FB829D29A480068FD5B /* WerewolfWarrior.swift in Sources */,
 				B6B1155D29A477B700E0725C /* BoardTile.swift in Sources */,
 				42A78FB629D294870068FD5B /* SkeletonBomber.swift in Sources */,
 				B6B1154C29A46D2D00E0725C /* GameScene.swift in Sources */,
