@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class Player: SKSpriteNode {
+class Mage: SKSpriteNode {
     var player:SKSpriteNode!
 
     private var playerAtlas: SKTextureAtlas {

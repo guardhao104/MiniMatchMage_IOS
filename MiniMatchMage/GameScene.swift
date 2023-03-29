@@ -13,7 +13,7 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     private var background = SKSpriteNode(imageNamed: "bg1.jpeg") // background image
-    private let player = Player()
+    private let mage = Mage()
     private let fairy = Fairy()
     private let fairy1 = Fairy()
     private let fairy2 = Fairy()
@@ -66,9 +66,9 @@ class GameScene: SKScene {
         setBackgroundImage();
         
         // setup the player with idle animation
-        player.setup(size:CGSize(width: 350, height: 350), pos: CGPoint(x: -250, y: 100))
-        addChild(player)
-        player.startPlayerIdleAnimation()
+        mage.setup(size:CGSize(width: 350, height: 350), pos: CGPoint(x: -250, y: 100))
+        addChild(mage)
+        mage.startPlayerIdleAnimation()
 
         // setup the enemies with idle animation
 //        fairy.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
