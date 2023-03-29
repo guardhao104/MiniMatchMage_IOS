@@ -156,6 +156,7 @@ class GameViewController: UIViewController {
         default:
             print("Invalid cast")
         }
+        endEnemyTurn();
     }
     
     // Single match tile

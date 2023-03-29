@@ -8,6 +8,7 @@
 import Foundation
 
 struct Player {
+    var maxhealth: Int
     var health: Int
     var shield: Int
     var spell1: [[String: Any]]
@@ -22,7 +23,7 @@ struct Player {
 //    var mage: [String: Any]
 //}
 
-var defaultPlayer = Player(health: 300, shield: 0, spell1: castFire, spell2: castWater, spell3: castWind)
+var defaultPlayer = Player(maxhealth: 300, health: 300, shield: 0, spell1: castFire, spell2: castWater, spell3: castWind)
 
 var poisonDamage = 10;
 
