@@ -43,9 +43,10 @@ var windSpell3 = ["shield": 200, "target": 3, "delay": 1] as [String: Any]
 var castWind=[windSpell1,windSpell2,windSpell3]
 
 
-var fighterEnemy = ["health": 200,"attack":20, "defend": 20, "speed": 2, "defaultSpeed":2, "poison":0] as [String: Any]
-var archerEnemy = ["health": 150, "attack":40,"defend": 10, "speed": 3, "defaultSpeed":3, "poison":0] as [String: Any]
-var mageEnemy = ["health": 100, "attack":100,"defend": 0, "speed": 4, "defaultSpeed":4, "poison":0] as [String: Any]
+var fighterEnemy = ["maxHealth": 200, "health": 200,"attack":20, "defend": 20, "speed": 2, "defaultSpeed":2, "poison":0] as [String: Any]
+var archerEnemy = ["maxHealth": 150, "health": 150, "attack":40,"defend": 10, "speed": 3, "defaultSpeed":3, "poison":0] as [String: Any]
+var mageEnemy = ["maxHealth": 100, "health": 100, "attack":100,"defend": 0, "speed": 4, "defaultSpeed":4, "poison":0] as [String: Any]
+
 
 
 //var defaultPlayer = player(health: 300, shield: 0, spell1: castFire, spell2: castWater, spell3: castWind)
