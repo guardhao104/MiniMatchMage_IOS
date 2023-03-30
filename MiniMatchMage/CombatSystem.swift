@@ -143,7 +143,14 @@ func endEnemyTurn(){
             if newSpeed == 0 {
                 enemyList[i]["speed"] = enemyList[i]["defaultSpeed"]
                 let damage = enemyList[i]["attack"]as! Int
-                defaultPlayer.health -= damage
+                if defaultPlayer.shield > damage{
+                    defaultPlayer.shield -= damage;
+                }
+                else{
+                    let takeDMG = damage - defaultPlayer.shield
+                    defaultPlayer.health = - takeDMG
+                    defaultPlayer.shield = 0
+                }
                 print("player take ",damage,"damage");
             }
             else{
