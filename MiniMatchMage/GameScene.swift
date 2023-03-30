@@ -284,7 +284,7 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         
         
-        if(enemyList.count != 0)
+        if(enemyList.count == 3)
         {
             var maxHp = enemyList[0]["maxHealth"] as! Int
             var hp = enemyList[0]["health"] as! Int
@@ -301,6 +301,14 @@ class GameScene: SKScene {
             ratio = CGFloat(Float(hp) / Float(maxHp))
             setHPBarValue(val:ratio, backgroundNode : backgroundNd2, progressNode: progressNd2)
             
+//            for enemy in enemyList {
+//                var maxHp = enemy["maxHealth"] as! Int
+//                var hp = enemy["health"] as! Int
+//                var ratio = CGFloat(Float(hp) / Float(maxHp))
+//                setHPBarValue(val:ratio, backgroundNode : backgroundNd1, progressNode: progressNd1)
+//            }
+//
+            
             var speed = enemyList[0]["speed"] as! Int
             var str = String(speed)
             button1.setTitle(str, for: .normal)
@@ -312,6 +320,53 @@ class GameScene: SKScene {
             speed = enemyList[2]["speed"] as! Int
             str = String(speed)
             button3.setTitle(str, for: .normal)
+        }
+        
+        if(enemyList.count == 2)
+        {
+            setHPBarValue(val: 0.0, backgroundNode: backgroundNd1, progressNode: progressNd1)
+            
+            var maxHp = enemyList[0]["maxHealth"] as! Int
+            var hp = enemyList[0]["health"] as! Int
+            var ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : backgroundNode, progressNode: progressNode)
+           
+            maxHp = enemyList[1]["maxHealth"] as! Int
+            hp = enemyList[1]["health"] as! Int
+            ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : backgroundNd2, progressNode: progressNd2)
+            
+            button1.setTitle("X", for: .normal)
+            
+            var speed = enemyList[0]["speed"] as! Int
+            var str = String(speed)
+            button2.setTitle(str, for: .normal)
+            
+            speed = enemyList[1]["speed"] as! Int
+            str = String(speed)
+            button3.setTitle(str, for: .normal)
+        }
+        
+        if(enemyList.count == 1)
+        {
+            setHPBarValue(val:0.0, backgroundNode : backgroundNode, progressNode: progressNode)
+            
+            var maxHp = enemyList[0]["maxHealth"] as! Int
+            var hp = enemyList[0]["health"] as! Int
+            var ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : backgroundNd2, progressNode: progressNd2)
+            
+            button2.setTitle("X", for: .normal)
+            
+            var speed = enemyList[0]["speed"] as! Int
+            var str = String(speed)
+            button3.setTitle(str, for: .normal)
+        }
+        
+        if (enemyList.count == 0)
+        {
+            setHPBarValue(val:0.0, backgroundNode : backgroundNd2, progressNode: progressNd2)
+            button3.setTitle("X", for: .normal)
         }
     }
 }
