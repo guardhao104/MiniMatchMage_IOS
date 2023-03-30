@@ -27,4 +27,8 @@ class Enemy:SKSpriteNode {
 
         enemy.run(SKAction.repeatForever(animation), withKey: key)
     }
+    
+    func startIdleAnimation() {}
+    func startAttackAnimation() {}
+    func startHitAnimation() {}
 }

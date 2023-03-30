@@ -69,17 +69,43 @@ class WerewolfWarrior: Enemy {
     }
     
     // trigger enemy idle animation
-    func startIdleAnimation() {
+    override func startIdleAnimation() {
         super.triggerAnimation(texture:werewolfWarriorIdleTextures, key:"werewolfWarriorIdleTextures")
     }
     
     // trigger enemy attack animation
-    func startAttackAnimation() {
+    override func startAttackAnimation() {
         super.triggerAnimation(texture:werewolfWarriorAttackTextures, key:"werewolfWarriorAttackTextures")
+        
+        // set the animation duration
+        let attackAnimation = SKAction.animate(with: werewolfWarriorAttackTextures, timePerFrame: 0.1)
+        
+        // When the attack animation is complete, wait for 0.5 seconds, then start the idle animation
+        enemy.run(attackAnimation, completion: {
+            let waitAction = SKAction.wait(forDuration: 0.5)
+            let idleAction = SKAction.run {
+                self.startIdleAnimation()
+            }
+            let sequence = SKAction.sequence([waitAction, idleAction])
+            self.run(sequence)
+        })
     }
     
     // trigger animation when get hit
-    func startHitAnimation() {
-        super.triggerAnimation(texture:werewolfWarriorHitTextures, key:"werewolfWarriorHitTextures")
+    override func startHitAnimation() {
+        super.triggerAnimation(texture:werewolfWarriorHitTextures, key:"werewolfWarriorAttackTextures")
+        
+        // set the animation duration
+        let attackAnimation = SKAction.animate(with: werewolfWarriorHitTextures, timePerFrame: 0.1)
+        
+        // When the attack animation is complete, wait for 0.5 seconds, then start the idle animation
+        enemy.run(attackAnimation, completion: {
+            let waitAction = SKAction.wait(forDuration: 0.5)
+            let idleAction = SKAction.run {
+                self.startIdleAnimation()
+            }
+            let sequence = SKAction.sequence([waitAction, idleAction])
+            self.run(sequence)
+        })
     }
 }

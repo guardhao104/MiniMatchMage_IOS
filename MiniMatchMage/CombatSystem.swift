@@ -31,6 +31,8 @@ func castSpell(_ element: String, _ number: Int) {
         switch number {
         case 1:
             print(defaultPlayer.spell1[0])
+            // trigger mage attack animation
+            mageObj.startPlayerAttackAnimation()
             let damage = defaultPlayer.spell1[0]["damage"] as! Int
             for i in 0..<1 {
                 let health = enemyList[i]["health"] as! Int
@@ -40,6 +42,8 @@ func castSpell(_ element: String, _ number: Int) {
             };
         case 2:
             print(defaultPlayer.spell1[1])
+            // trigger mage attack animation
+            mageObj.startPlayerAttackAnimation()
             let damage = defaultPlayer.spell1[1]["damage"] as! Int
             for i in 0..<1 {
                 let health = enemyList[i]["health"] as! Int
@@ -49,6 +53,8 @@ func castSpell(_ element: String, _ number: Int) {
             };
         case 3:
             print(defaultPlayer.spell1[2])
+            // trigger mage attack animation
+            mageObj.startPlayerAttackAnimation()
             let heal = defaultPlayer.spell1[2]["heal"] as! Int
             let damage = defaultPlayer.spell1[2]["damage"] as! Int
             defaultPlayer.health += heal
@@ -74,18 +80,24 @@ func castSpell(_ element: String, _ number: Int) {
         switch number {
         case 1:
             print(defaultPlayer.spell2[0])
+            // trigger mage attack animation
+            mageObj.startPlayerAttackAnimation()
             for i in 0..<1 {
                 let poison = enemyList[i]["poison"] as! Int
                 enemyList[i]["poison"] = poison + 2;
             };
         case 2:
             print(defaultPlayer.spell2[1])
+            // trigger mage attack animation
+            mageObj.startPlayerAttackAnimation()
             for i in 0..<enemyList.count {
                 let poison = enemyList[i]["poison"] as! Int
                 enemyList[i]["poison"] = poison + 2;
             };
         case 3:
             print(defaultPlayer.spell2[2])
+            // trigger mage attack animation
+            mageObj.startPlayerAttackAnimation()
             for i in 0..<enemyList.count {
                 let poison = enemyList[i]["poison"] as! Int
                 let health = enemyList[i]["health"] as! Int
@@ -101,14 +113,20 @@ func castSpell(_ element: String, _ number: Int) {
         switch number {
         case 1:
             print(defaultPlayer.spell3[0])
+            // trigger mage attack animation
+            mageObj.startPlayerAttackAnimation()
             let shield = defaultPlayer.spell3[0]["shield"] as! Int
             defaultPlayer.shield += shield
         case 2:
             print(defaultPlayer.spell3[1])
+            // trigger mage attack animation
+            mageObj.startPlayerAttackAnimation()
             let shield = defaultPlayer.spell3[1]["shield"] as! Int
             defaultPlayer.shield += shield
         case 3:
             print(defaultPlayer.spell3[2])
+            // trigger mage attack animation
+            mageObj.startPlayerAttackAnimation()
             let shield = defaultPlayer.spell3[2]["shield"] as! Int
             defaultPlayer.shield += shield
             for i in 0..<enemyList.count {
@@ -149,12 +167,16 @@ func endEnemyTurn(){
             if poison > 0 {
                 let newPoisonStack = poison - 1
                 enemyList[i]["poison"] = newPoisonStack;
+                // trigger enemy hit animation
+                enemyArr[i].startHitAnimation()
             }
             // check enemy speed for attack
             let speed = enemyList[i]["speed"] as! Int
             let newSpeed = speed - 1;
             if newSpeed == 0 {
                 enemyList[i]["speed"] = enemyList[i]["defaultSpeed"]
+                // trigger enemy attack animation
+//                enemyArr[i].startAttackAnimation()
                 let damage = enemyList[i]["attack"]as! Int
                 // check player took dmg
                 if defaultPlayer.shield > damage{
@@ -164,6 +186,8 @@ func endEnemyTurn(){
                     let takeDMG = damage - defaultPlayer.shield
                     defaultPlayer.health = defaultPlayer.health - takeDMG
                     defaultPlayer.shield = 0
+                    // trigger mage hit animation
+                    mageObj.startPlayerHitAnimation()
                 }
                 print("player take ",damage,"damage");
             }

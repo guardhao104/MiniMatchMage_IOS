@@ -40,6 +40,13 @@ class Mage: SKSpriteNode {
         ]
     }
     
+    // add enemy attack animation into fairyAtlas
+    private var playerHitTextures: [SKTexture] {
+        return [
+            playerAtlas.textureNamed("hitted")
+        ]
+    }
+    
     // set up the fairy image
     func setup(size:CGSize, pos:CGPoint) {
         // set the texture size
@@ -62,10 +69,30 @@ class Mage: SKSpriteNode {
         // set the animation duration
         let attackAnimation = SKAction.animate(with: playerAttackTextures, timePerFrame: 0.1)
         
+        // When the attack animation is complete, wait for 0.5 seconds, then start the idle animation
         player.run(attackAnimation, completion: {
-            // When the animation is complete, start the idle animation
-            self.startPlayerAttackAnimation()
+            let waitAction = SKAction.wait(forDuration: 0.5)
+            let idleAction = SKAction.run {
+                self.startPlayerIdleAnimation()
+            }
+            let sequence = SKAction.sequence([waitAction, idleAction])
+            self.run(sequence)
         })
+    }
+    
+    // trigger player attack animation
+    func startPlayerHitAnimation() {
+        // set the animation duration
+        let attackAnimation = SKAction.animate(with: playerHitTextures, timePerFrame: 0.1)
         
+        // When the attack animation is complete, wait for 0.5 seconds, then start the idle animation
+        player.run(attackAnimation, completion: {
+            let waitAction = SKAction.wait(forDuration: 0.5)
+            let idleAction = SKAction.run {
+                self.startPlayerIdleAnimation()
+            }
+            let sequence = SKAction.sequence([waitAction, idleAction])
+            self.run(sequence)
+        })
     }
 }

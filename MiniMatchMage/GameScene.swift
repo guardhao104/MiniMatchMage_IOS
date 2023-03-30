@@ -8,6 +8,11 @@
 import SpriteKit
 import GameplayKit
 
+// mage global variable
+var mageObj = Mage()
+// enemy global variable
+var enemyArr: [Enemy] = []
+
 class GameScene: SKScene {
     
     private var label : SKLabelNode?
@@ -67,62 +72,113 @@ class GameScene: SKScene {
         
         // setup the player with idle animation
         mage.setup(size:CGSize(width: 350, height: 350), pos: CGPoint(x: -250, y: 100))
+        mageObj = mage
         addChild(mage)
         mage.startPlayerIdleAnimation()
 
         // setup the enemies with idle animation
+        werewolfWarrior.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
+        enemyArr.append(werewolfWarrior)
+        addChild(werewolfWarrior)
+        werewolfWarrior.startIdleAnimation()
+        skeletonBomber1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
+        enemyArr.append(skeletonBomber1)
+        addChild(skeletonBomber1)
+        skeletonBomber1.startIdleAnimation()
+        fairy2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+        enemyArr.append(fairy2)
+        addChild(fairy2)
+        fairy2.startIdleAnimation()
+        
+        
+        
 //        fairy.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
 //        fairy1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
 //        fairy2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+//
+//        enemyArr.append(fairy)
+//        enemyArr.append(fairy1)
+//        enemyArr.append(fairy2)
+//
 //        addChild(fairy)
 //        addChild(fairy1)
 //        addChild(fairy2)
+//
+//        fairy.startIdleAnimation()
+//        fairy1.startIdleAnimation()
+//        fairy2.startIdleAnimation()
+        
+        
         
 //        catWitch.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
 //        catWitch1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
 //        catWitch2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+//
+//        enemyArr.append(catWitch)
+//        enemyArr.append(catWitch1)
+//        enemyArr.append(catWitch2)
+//
 //        addChild(catWitch)
 //        addChild(catWitch1)
 //        addChild(catWitch2)
+//
 //        catWitch.startIdleAnimation()
-//        catWitch1.startAttackAnimation()
-//        catWitch2.startHitAnimation()
+//        catWitch1.startIdleAnimation()
+//        catWitch2.startIdleAnimation()
+        
+        
         
 //        demon.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
 //        demon1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
 //        demon2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+//
+//        enemyArr.append(demon)
+//        enemyArr.append(demon1)
+//        enemyArr.append(demon2)
 //
 //        addChild(demon)
 //        addChild(demon1)
 //        addChild(demon2)
 //
 //        demon.startIdleAnimation()
-//        demon1.startAttackAnimation()
-//        demon2.startHitAnimation()
+//        demon1.startIdleAnimation()
+//        demon2.startIdleAnimation()
+        
+        
         
 //        skeletonBomber.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
 //        skeletonBomber1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
 //        skeletonBomber2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+//
+//        enemyArr.append(skeletonBomber)
+//        enemyArr.append(skeletonBomber1)
+//        enemyArr.append(skeletonBomber2)
 //
 //        addChild(skeletonBomber)
 //        addChild(skeletonBomber1)
 //        addChild(skeletonBomber2)
 //
 //        skeletonBomber.startIdleAnimation()
-//        skeletonBomber1.startAttackAnimation()
-//        skeletonBomber2.startHitAnimation()
+//        skeletonBomber1.startIdleAnimation()
+//        skeletonBomber1.startIdleAnimation()
         
-        werewolfWarrior.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
-        werewolfWarrior1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
-        werewolfWarrior2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
-
-        addChild(werewolfWarrior)
-        addChild(werewolfWarrior1)
-        addChild(werewolfWarrior2)
-
-        werewolfWarrior.startIdleAnimation()
-        werewolfWarrior1.startAttackAnimation()
-        werewolfWarrior2.startHitAnimation()
+        
+        
+//        werewolfWarrior.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
+//        werewolfWarrior1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
+//        werewolfWarrior2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
+//
+//        enemyArr.append(werewolfWarrior)
+//        enemyArr.append(werewolfWarrior1)
+//        enemyArr.append(werewolfWarrior2)
+//
+//        addChild(werewolfWarrior)
+//        addChild(werewolfWarrior1)
+//        addChild(werewolfWarrior2)
+//
+//        werewolfWarrior.startIdleAnimation()
+//        werewolfWarrior1.startAttackAnimation()
+//        werewolfWarrior2.startHitAnimation()
     }
     
     
