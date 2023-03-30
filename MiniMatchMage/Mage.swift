@@ -1,5 +1,5 @@
 //
-//  Player.swift
+//  Mage.swift
 //  MiniMatchMage
 //
 //  Created by yushuo lu on 2023-03-23.

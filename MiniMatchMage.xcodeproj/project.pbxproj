@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		425DD74F29A6014A00733FB4 /* PlayerStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425DD74E29A6014A00733FB4 /* PlayerStateMachine.swift */; };
 		42A78FAC29CD043A0068FD5B /* Fairy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FAB29CD043A0068FD5B /* Fairy.swift */; };
-		42A78FAE29CD11EC0068FD5B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FAD29CD11EC0068FD5B /* Player.swift */; };
 		42A78FB029CD18670068FD5B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FAF29CD18660068FD5B /* Enemy.swift */; };
 		42A78FB229D288340068FD5B /* CatWitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB129D288340068FD5B /* CatWitch.swift */; };
 		42A78FB429D28FBC0068FD5B /* Demon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB329D28FBB0068FD5B /* Demon.swift */; };
@@ -29,12 +28,12 @@
 		B6B1155629A46D2F00E0725C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6B1155429A46D2F00E0725C /* LaunchScreen.storyboard */; };
 		B6B1155D29A477B700E0725C /* BoardTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1155C29A477B700E0725C /* BoardTile.swift */; };
 		B6B1156629A4919600E0725C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1156529A4919600E0725C /* Constants.swift */; };
+		B6B115A329D525E600E0725C /* Mage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B115A229D525E600E0725C /* Mage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		425DD74E29A6014A00733FB4 /* PlayerStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateMachine.swift; sourceTree = "<group>"; };
 		42A78FAB29CD043A0068FD5B /* Fairy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fairy.swift; sourceTree = "<group>"; };
-		42A78FAD29CD11EC0068FD5B /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		42A78FAF29CD18660068FD5B /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		42A78FB129D288340068FD5B /* CatWitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatWitch.swift; sourceTree = "<group>"; };
 		42A78FB329D28FBB0068FD5B /* Demon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demon.swift; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		B6B1155529A46D2F00E0725C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6B1155C29A477B700E0725C /* BoardTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTile.swift; sourceTree = "<group>"; };
 		B6B1156529A4919600E0725C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B6B115A229D525E600E0725C /* Mage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +91,6 @@
 				B6B1154729A46D2D00E0725C /* GameScene.sks */,
 				42A78FCB29D3E76A0068FD5B /* MainPage.sks */,
 				B6B1154929A46D2D00E0725C /* Actions.sks */,
-				42A78FAD29CD11EC0068FD5B /* Player.swift */,
 				42A78FAF29CD18660068FD5B /* Enemy.swift */,
 				42A78FAB29CD043A0068FD5B /* Fairy.swift */,
 				42A78FB129D288340068FD5B /* CatWitch.swift */,
@@ -109,6 +108,7 @@
 				B6B1155429A46D2F00E0725C /* LaunchScreen.storyboard */,
 				A337B73429CC058000D103DD /* CombatData.swift */,
 				A337B73229CC055600D103DD /* CombatSystem.swift */,
+				B6B115A229D525E600E0725C /* Mage.swift */,
 			);
 			path = MiniMatchMage;
 			sourceTree = "<group>";
@@ -197,12 +197,12 @@
 				B6B1154C29A46D2D00E0725C /* GameScene.swift in Sources */,
 				42A78FB429D28FBC0068FD5B /* Demon.swift in Sources */,
 				42A78FCE29D3E8A70068FD5B /* MainViewController.swift in Sources */,
-				42A78FAE29CD11EC0068FD5B /* Player.swift in Sources */,
 				42A78FB029CD18670068FD5B /* Enemy.swift in Sources */,
 				42A78FB229D288340068FD5B /* CatWitch.swift in Sources */,
 				B6B1154E29A46D2D00E0725C /* GameViewController.swift in Sources */,
 				425DD74F29A6014A00733FB4 /* PlayerStateMachine.swift in Sources */,
 				B6B1154629A46D2D00E0725C /* AppDelegate.swift in Sources */,
+				B6B115A329D525E600E0725C /* Mage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
