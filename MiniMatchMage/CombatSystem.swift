@@ -75,21 +75,22 @@ func castSpell(_ element: String, _ number: Int) {
         case 1:
             print(defaultPlayer.spell2[0])
             for i in 0..<1 {
-                let stack = enemyList[i]["poison"] as! Int
-                enemyList[i]["stack"] = stack+2;
+                let poison = enemyList[i]["poison"] as! Int
+                enemyList[i]["poison"] = poison + 2;
             };
         case 2:
             print(defaultPlayer.spell2[1])
             for i in 0..<enemyList.count {
-                let stack = enemyList[i]["poison"] as! Int
-                enemyList[i]["stack"] = stack+2;
+                let poison = enemyList[i]["poison"] as! Int
+                enemyList[i]["poison"] = poison + 2;
             };
         case 3:
             print(defaultPlayer.spell2[2])
             for i in 0..<enemyList.count {
-                let stack = enemyList[i]["poison"] as! Int
+                let poison = enemyList[i]["poison"] as! Int
                 let health = enemyList[i]["health"] as! Int
-                let newHealth = health - (stack * poisonDamage);
+                enemyList[i]["poison"] = poison + 2
+                let newHealth = health - (enemyList[i]["poison"] as! Int * poisonDamage);
                 enemyList[i]["health"] = newHealth;
                 print ("poision all enemies")
             };
@@ -125,30 +126,43 @@ func castSpell(_ element: String, _ number: Int) {
 }
 
 func endEnemyTurn(){
+    
+    var newEnemyList = [Int]()
+    // check for next level
     if (enemyList.count == 0){
         print("next level")
     }
-    print ("enemies status",enemyList,"playerstatus",defaultPlayer);
+    print ("enemies status",enemyList,"playerstatus",defaultPlayer.health,defaultPlayer.shield);
+    // action for each enemy
     for i in 0..<enemyList.count {
-        let stack = enemyList[i]["poison"] as! Int
+        print ("debug before fatal error",enemyList,"count",enemyList.count,"this is i ",i);
+        
+        let poison = enemyList[i]["poison"] as! Int
         let health = enemyList[i]["health"] as! Int
-        let newHealth = health - (stack * poisonDamage);
-        enemyList[i]["health"] = newHealth;
-        print("take poison damage", stack * 10)
+        let newHealth = health - (poison * poisonDamage);
+        // enemy take poison dmg
+        print("take poison damage", poison ,poison * poisonDamage)
+        // check if target enemy still alive
         if newHealth > 0 {
-            let newstack = stack - 1;
-            enemyList[i]["poison"] = newstack;
+            enemyList[i]["health"] = newHealth;
+            // poison stack reduce
+            if poison > 0 {
+                let newPoisonStack = poison - 1
+                enemyList[i]["poison"] = newPoisonStack;
+            }
+            // check enemy speed for attack
             let speed = enemyList[i]["speed"] as! Int
             let newSpeed = speed - 1;
             if newSpeed == 0 {
                 enemyList[i]["speed"] = enemyList[i]["defaultSpeed"]
                 let damage = enemyList[i]["attack"]as! Int
+                // check player took dmg
                 if defaultPlayer.shield > damage{
                     defaultPlayer.shield -= damage;
                 }
                 else{
                     let takeDMG = damage - defaultPlayer.shield
-                    defaultPlayer.health = - takeDMG
+                    defaultPlayer.health = defaultPlayer.health - takeDMG
                     defaultPlayer.shield = 0
                 }
                 print("player take ",damage,"damage");
@@ -157,8 +171,12 @@ func endEnemyTurn(){
                 enemyList[i]["speed"] = newSpeed;
             }
         }else{
-            let enemyList = enemyList.remove(at: i)
-            print("the enemy ",i, "is dead")
+            enemyList[i]["health"] = 0;
+            newEnemyList.append(i)
         }
     };
+    for j in newEnemyList{
+        enemyList.remove(at: j)
+        print("the enemy ",newEnemyList, "is dead !!!!" )
+    }
 }
