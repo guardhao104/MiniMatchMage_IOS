@@ -156,6 +156,10 @@ class GameViewController: UIViewController {
         default:
             print("Invalid cast")
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            // Do nothing
+        }
         endEnemyTurn();
     }
     

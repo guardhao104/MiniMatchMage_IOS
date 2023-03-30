@@ -176,7 +176,7 @@ func endEnemyTurn(){
             if newSpeed == 0 {
                 enemyList[i]["speed"] = enemyList[i]["defaultSpeed"]
                 // trigger enemy attack animation
-//                enemyArr[i].startAttackAnimation()
+                enemyArr[i].startAttackAnimation()
                 let damage = enemyList[i]["attack"]as! Int
                 // check player took dmg
                 if defaultPlayer.shield > damage{
