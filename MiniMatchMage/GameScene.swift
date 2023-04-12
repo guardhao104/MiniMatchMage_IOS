@@ -7,6 +7,9 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
+
+var audioPlayer = AVAudioPlayer()
 
 // mage global variable
 var mageObj = Mage()
@@ -154,7 +157,6 @@ class GameScene: SKScene {
         button2.frame = CGRect(x: 70, y: -290, width: 50, height: 50)
         button2.setTitle("2", for: .normal)
         button2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-//        button2.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button2.backgroundColor = .white
         button2.setTitleColor(.black, for: .normal)
         button2.setBackgroundImage(image, for: .normal)
@@ -168,11 +170,22 @@ class GameScene: SKScene {
         button3.frame = CGRect(x: 180, y: -290, width: 50, height: 50)
         button3.setTitle("3", for: .normal)
         button3.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-//        button3.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button3.backgroundColor = .white
         button3.setTitleColor(.black, for: .normal)
         button3.setBackgroundImage(image, for: .normal)
         buttonContainerView.addSubview(button3)
+        
+        
+        // play bgm
+        let sound = Bundle.main.path(forResource: "HesitantBlade", ofType: "mp3")
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+        } catch {
+            print(error)
+        }
+
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
     }
     
     @objc func buttonPressed() {
@@ -200,33 +213,6 @@ class GameScene: SKScene {
         let progress: CGFloat = val
         progressNode.size.width = backgroundNode.size.width * progress
     }
-    
-//    // create hp bar in the view
-//    func addHPBar(posX:CGFloat, posY:CGFloat)
-//    {
-//        // create SKCropNode object
-//        let cropNode = SKCropNode()
-//
-//        // create a background spriteNode as background
-//        let backgroundNode = SKSpriteNode(color: .lightGray, size: CGSize(width: 100, height: 20))
-//        cropNode.maskNode = backgroundNode
-//
-//        // create a front spriteNode as progress bar
-//        let progressNode = SKSpriteNode(color: .red, size: CGSize(width: 100, height: 20))
-//        cropNode.addChild(progressNode)
-//
-//        // add SKCropNode into view
-//        addChild(cropNode)
-//
-//        // Set the progress value of a progress bar
-//        let progress: CGFloat = 1
-//        progressNode.size.width = backgroundNode.size.width * progress
-//
-//        // Set hp bar position
-//        cropNode.position = CGPoint(x:140, y:-20)
-//        print(cropNode.position)
-//    }
-    
     
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
@@ -281,8 +267,6 @@ class GameScene: SKScene {
     
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        
         
         if(enemyList.count == 3)
         {
@@ -300,14 +284,6 @@ class GameScene: SKScene {
             hp = enemyList[2]["health"] as! Int
             ratio = CGFloat(Float(hp) / Float(maxHp))
             setHPBarValue(val:ratio, backgroundNode : backgroundNd2, progressNode: progressNd2)
-            
-//            for enemy in enemyList {
-//                var maxHp = enemy["maxHealth"] as! Int
-//                var hp = enemy["health"] as! Int
-//                var ratio = CGFloat(Float(hp) / Float(maxHp))
-//                setHPBarValue(val:ratio, backgroundNode : backgroundNd1, progressNode: progressNd1)
-//            }
-//
             
             var speed = enemyList[0]["speed"] as! Int
             var str = String(speed)
