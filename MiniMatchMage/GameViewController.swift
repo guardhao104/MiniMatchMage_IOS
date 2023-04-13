@@ -9,6 +9,9 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import SceneKit
+import AVFoundation
+
+var soundEffect = AVAudioPlayer()
 
 class GameViewController: UIViewController {
     var tileSize: Double = 0
@@ -68,6 +71,19 @@ class GameViewController: UIViewController {
         updateTiles()
         enableTileInteraction()
 //        restart()
+    }
+    
+    func playSoundEffect() {
+        // play bgm
+        let sound = Bundle.main.path(forResource: "soundEffect", ofType: "mp3")
+        do {
+            soundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+        } catch {
+            print(error)
+        }
+
+        soundEffect.prepareToPlay()
+        soundEffect.play()
     }
     
     // Put tiles in board
@@ -158,6 +174,7 @@ class GameViewController: UIViewController {
     
     // cast(int id, int num){switch  cast}
     func playerAttack(_ tileId: Int, _ num: Int){
+        playSoundEffect()
         switch tileId{
         case 1:
             castSpell("fire",num)
@@ -189,6 +206,7 @@ class GameViewController: UIViewController {
     func doubleMatch(_ row1: Int, _ row2: Int, _ column1: Int, _ column2: Int) {
         let tiles = [boardTiles[row1][column1], boardTiles[row2][column2]]
         if checkMatch(tiles) {
+            playerAttack(boardTiles[row1][column1].tileNo,2)
             if row1 == row2 {
                 removeTwoTiles(row1, column1, column2)
             } else {
@@ -196,17 +214,16 @@ class GameViewController: UIViewController {
                 removeTile(row2, column2)
             }
         }
-        playerAttack(boardTiles[row1][column1].tileNo,2)
     }
     
     // Square match four tiles in square
     func squareMatch(_ column1: Int, _ column2: Int) {
         let tiles = [boardTiles[0][column1], boardTiles[0][column2], boardTiles[1][column1], boardTiles[1][column2]]
         if checkMatch(tiles) {
+            playerAttack(boardTiles[0][column1].tileNo,3)
             removeTwoTiles(0, column1, column2)
             removeTwoTiles(1, column1, column2)
         }
-        playerAttack(boardTiles[0][column1].tileNo,3)
     }
     
     func checkMatch(_ tiles: [BoardTile]) -> Bool {
