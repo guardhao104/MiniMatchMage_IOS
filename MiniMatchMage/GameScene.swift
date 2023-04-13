@@ -8,6 +8,7 @@
 import SpriteKit
 import GameplayKit
 import AVFoundation
+import UIKit
 
 var audioPlayer = AVAudioPlayer()
 
@@ -41,6 +42,7 @@ class GameScene: SKScene {
     var button2 = UIButton()
     var button3 = UIButton()
     let image = UIImage(named: "turnCounter")
+    private var flag:Bool = false
     
     // create SKCropNode object
     let cropNode = SKCropNode()
@@ -188,6 +190,20 @@ class GameScene: SKScene {
         audioPlayer.play()
     }
     
+    // switch scene to DetailScene mainwhile stop bgm and remove all btns
+    @objc func switchToDetailScene() {
+        audioPlayer.stop()
+        if let view = self.view {
+            let detailScene = DetailScene(size: self.size)
+            detailScene.scaleMode = self.scaleMode
+            let transition = SKTransition.fade(withDuration: 1.0)
+            view.presentScene(detailScene, transition: transition)
+            button1.removeFromSuperview()
+            button2.removeFromSuperview()
+            button3.removeFromSuperview()
+        }
+    }
+    
     @objc func buttonPressed() {
         var enemy1 = enemyList[0]
         print(enemy1)
@@ -244,13 +260,6 @@ class GameScene: SKScene {
         }
 
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-        
-//        for touch in touches {
-//            let location = touch.location(in: self)
-//            if enemy1.contains(location) {
-//                startEnemy1AttackAnimation()
-//            }
-//        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -264,7 +273,6 @@ class GameScene: SKScene {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
-    
     
     override func update(_ currentTime: TimeInterval) {
         
@@ -337,12 +345,14 @@ class GameScene: SKScene {
             var speed = enemyList[0]["speed"] as! Int
             var str = String(speed)
             button3.setTitle(str, for: .normal)
+            flag = true
         }
         
-        if (enemyList.count == 0)
+        if (enemyList.count == 0 && flag == true)
         {
             setHPBarValue(val:0.0, backgroundNode : backgroundNd2, progressNode: progressNd2)
             button3.setTitle("X", for: .normal)
+            switchToDetailScene();
         }
     }
 }

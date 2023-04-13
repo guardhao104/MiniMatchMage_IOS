@@ -115,11 +115,6 @@ class GameViewController: UIViewController {
         }
     }
     
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        guard let touch = touches.first else { return }
-//
-//    }
-    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let pos = touch.location(in: self.boardView)
