@@ -8,6 +8,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import SceneKit
 
 class GameViewController: UIViewController {
     var tileSize: Double = 0
@@ -16,8 +17,13 @@ class GameViewController: UIViewController {
     var firstTileRow: Int = 0
     var firstTileColumn: Int = 0
     
-    @IBOutlet weak var boardView: UIView!
-
+    @IBOutlet weak var boardView: SCNView!
+    
+    var scene: SCNScene = SCNScene(named: "Modules.scnassets/diamonds1.scn")!
+    var gem1: SCNScene = SCNScene(named: "Modules.scnassets/gem1.scn")!
+    var gem2: SCNScene = SCNScene(named: "Modules.scnassets/gem2.scn")!
+    var gem3: SCNScene = SCNScene(named: "Modules.scnassets/gem3.scn")!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,12 +37,15 @@ class GameViewController: UIViewController {
                 view.presentScene(scene)
             }
             
-            
             view.ignoresSiblingOrder = false
             
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        
+        boardView.scene = scene
+        scene.background.contents = UIImage(named: "gem_bg.jpg")
+        
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -66,10 +75,21 @@ class GameViewController: UIViewController {
         for row in 0..<numberOfRows {
             var newRow: [BoardTile] = []
             for column in 0..<numberOfColumns {
-                let tileImageView = UIImageView(image: UIImage(named: "tile1"))
-                tileImageView.frame = CGRect(x: Double(column) * tileSize, y: Double(row) * tileSize, width: tileSize, height: tileSize)
-                boardView.addSubview(tileImageView)
-                newRow += [BoardTile(tileNo: 1, imageView: tileImageView)]
+                let geo = gem1.rootNode.childNodes[0].geometry
+                let gemNode = SCNNode(geometry: geo)
+                gemNode.position = SCNVector3(x: Float(column * 3 - 9), y: 0, z: Float(row * 3) - 1.5)
+                scene.rootNode.addChildNode(gemNode)
+                
+                let tileImage = UIImageView(image: UIImage(named:"none"))
+                tileImage.frame = CGRect(x: Double(column) * tileSize, y: Double(row) * tileSize, width: tileSize, height: tileSize)
+                boardView.addSubview(tileImage)
+                newRow += [BoardTile(tileNo: 1, tileNode: gemNode, imageView: tileImage)]
+                
+                
+//                let tileImageView = UIImageView(image: UIImage(named: "tile1"))
+//                tileImageView.frame = CGRect(x: Double(column) * tileSize, y: Double(row) * tileSize, width: tileSize, height: tileSize)
+//                boardView.addSubview(tileImageView)
+//                newRow += [BoardTile(tileNo: 1, imageView: tileImageView)]
             }
             boardTiles += [newRow]
         }
@@ -204,21 +224,43 @@ class GameViewController: UIViewController {
     
     func removeTile(_ row: Int, _ column: Int) {
         var currentTile = boardTiles[row][column]
+        
+        let fadeOutAnimation = CABasicAnimation(keyPath: "scale")
+        fadeOutAnimation.toValue = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
+        fadeOutAnimation.duration = clearTileAnimateDuration
+        
+        currentTile.tileNode.addAnimation(fadeOutAnimation, forKey: "scale")
+        
         UIView.animate(withDuration: clearTileAnimateDuration) {
             currentTile.imageView.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + clearTileAnimateDuration) {
             UIView.animate(withDuration: moveTileAnimateDuration) {
                 for columnToMove in ((column + 1)..<numberOfColumns) {
                     let tile = self.boardTiles[row][columnToMove]
+                    let shiftLeftAnimation = CABasicAnimation(keyPath: "position.x")
+                    shiftLeftAnimation.fromValue = tile.tileNode.position.x
+                    shiftLeftAnimation.toValue = tile.tileNode.position.x - 3.0
+                    shiftLeftAnimation.duration = moveTileAnimateDuration
+                    tile.tileNode.addAnimation(shiftLeftAnimation, forKey: "shift")
+                    tile.tileNode.position.x -= 3.0
                     tile.imageView.frame.origin.x -= self.tileSize
                     self.boardTiles[row][columnToMove - 1] = tile
                 }
                 currentTile.imageView.frame.origin.x -= self.tileSize
                 currentTile.tileNo = Int.random(in: tileNoRange)
+                let shiftLeftAnimation = CABasicAnimation(keyPath: "position.x")
+                shiftLeftAnimation.fromValue = currentTile.tileNode.position.x
+                shiftLeftAnimation.toValue = currentTile.tileNode.position.x - 3.0
+                shiftLeftAnimation.duration = moveTileAnimateDuration
+                currentTile.tileNode.addAnimation(shiftLeftAnimation, forKey: "shift")
+                currentTile.tileNode.position.x -= 3.0
             }
             currentTile.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+            currentTile.tileNode.scale = SCNVector3(x: 1.0, y: 1.0, z: 1.0)
             currentTile.imageView.frame.origin.x += CGFloat(numberOfColumns - column) * self.tileSize
+            currentTile.tileNode.position.x += Float(numberOfColumns - column) * 3
             self.boardTiles[row][numberOfColumns - 1] = currentTile
         }
     }
@@ -226,6 +268,14 @@ class GameViewController: UIViewController {
     func removeTwoTiles(_ row: Int, _ column1: Int, _ column2: Int) {
         var currentTile1 = boardTiles[row][column1]
         var currentTile2 = boardTiles[row][column2]
+        
+        let fadeOutAnimation = CABasicAnimation(keyPath: "scale")
+        fadeOutAnimation.toValue = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
+        fadeOutAnimation.duration = clearTileAnimateDuration
+        
+        currentTile1.tileNode.addAnimation(fadeOutAnimation, forKey: "scale")
+        currentTile2.tileNode.addAnimation(fadeOutAnimation, forKey: "scale")
+        
         UIView.animate(withDuration: clearTileAnimateDuration) {
             currentTile1.imageView.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
             currentTile2.imageView.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
@@ -234,17 +284,39 @@ class GameViewController: UIViewController {
             UIView.animate(withDuration: moveTileAnimateDuration) {
                 for columnToMove in ((column2 + 1)..<numberOfColumns) {
                     let tile = self.boardTiles[row][columnToMove]
+                    let shiftLeftAnimation = CABasicAnimation(keyPath: "position.x")
+                    shiftLeftAnimation.fromValue = tile.tileNode.position.x
+                    shiftLeftAnimation.toValue = tile.tileNode.position.x - 6.0
+                    shiftLeftAnimation.duration = moveTileAnimateDuration
+                    tile.tileNode.addAnimation(shiftLeftAnimation, forKey: "shift")
+                    tile.tileNode.position.x -= 6.0
                     tile.imageView.frame.origin.x -= self.tileSize * 2
                     self.boardTiles[row][columnToMove - 2] = tile
                 }
+                var shiftLeftAnimation = CABasicAnimation(keyPath: "position.x")
+                shiftLeftAnimation.fromValue = currentTile1.tileNode.position.x
+                shiftLeftAnimation.toValue = currentTile1.tileNode.position.x - 6.0
+                shiftLeftAnimation.duration = moveTileAnimateDuration
+                currentTile1.tileNode.addAnimation(shiftLeftAnimation, forKey: "shift")
+                currentTile1.tileNode.position.x -= 6.0
                 currentTile1.imageView.frame.origin.x -= self.tileSize * 2
                 currentTile1.tileNo = Int.random(in: tileNoRange)
+                shiftLeftAnimation = CABasicAnimation(keyPath: "position.x")
+                shiftLeftAnimation.fromValue = currentTile2.tileNode.position.x
+                shiftLeftAnimation.toValue = currentTile2.tileNode.position.x - 6.0
+                shiftLeftAnimation.duration = moveTileAnimateDuration
+                currentTile2.tileNode.addAnimation(shiftLeftAnimation, forKey: "shift")
+                currentTile2.tileNode.position.x -= 6.0
                 currentTile2.imageView.frame.origin.x -= self.tileSize * 2
                 currentTile2.tileNo = Int.random(in: tileNoRange)
             }
+            currentTile1.tileNode.scale = SCNVector3(x: 1.0, y: 1.0, z: 1.0)
             currentTile1.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+            currentTile2.tileNode.scale = SCNVector3(x: 1.0, y: 1.0, z: 1.0)
             currentTile2.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+            currentTile1.tileNode.position.x += Float(numberOfColumns - column1) * 3
             currentTile1.imageView.frame.origin.x += CGFloat(numberOfColumns - column1) * self.tileSize
+            currentTile2.tileNode.position.x += Float(numberOfColumns - column2 + 1) * 3
             currentTile2.imageView.frame.origin.x += CGFloat(numberOfColumns - column2 + 1) * self.tileSize
             self.boardTiles[row][numberOfColumns - 2] = currentTile1
             self.boardTiles[row][numberOfColumns - 1] = currentTile2
