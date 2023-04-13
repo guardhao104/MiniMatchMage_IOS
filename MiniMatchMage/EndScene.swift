@@ -1,4 +1,13 @@
 //
+//  EndScene.swift
+//  MiniMatchMage
+//
+//  Created by yushuo lu on 2023-04-13.
+//
+
+import Foundation
+
+//
 //  DetailScene.swift
 //  MiniMatchMage
 //
@@ -7,29 +16,17 @@
 
 import SpriteKit
 
-class DetailScene: SKScene, SKPhysicsContactDelegate {
+class EndScene: SKScene, SKPhysicsContactDelegate {
     
     var numberLabel = SKLabelNode(fontNamed: "Helvetica")
     var dx: CGFloat = 0
     var dy: CGFloat = 0
-    var button = UIButton()
-    
-    static var record: Int = 0
     
     override func didMove(to view: SKView) {
         
         let buttonContainerView = UIView(frame: CGRect(x: size.width/2 - 100, y: size.height/2 - 25, width: 200, height: 50))
         buttonContainerView.backgroundColor = .clear
         view.addSubview(buttonContainerView)
-        
-        // create the button and add it to the container view
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        button.setTitle("ReStar", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        button.backgroundColor = .white
-        button.setTitleColor(.black, for: .normal)
-        buttonContainerView.addSubview(button)
         
         if let gameViewController = self.view?.window?.rootViewController as? GameViewController {
             gameViewController.boardView.isHidden = true
@@ -45,7 +42,7 @@ class DetailScene: SKScene, SKPhysicsContactDelegate {
         
         // set number
         let score = defaultPlayer.health;
-        numberLabel.text = "Score: " + String(score) + " Last Score: " + String(DetailScene.record)
+        numberLabel.text = "Your are defeated"
         numberLabel.fontSize = 40
         numberLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(numberLabel)
@@ -64,9 +61,6 @@ class DetailScene: SKScene, SKPhysicsContactDelegate {
         numberBody.contactTestBitMask = 1
         numberBody.collisionBitMask = 1
         numberLabel.physicsBody = numberBody
-        
-        defaultPlayer.health = defaultPlayer.maxhealth
-        defaultPlayer.shield = 0
         
         self.physicsWorld.contactDelegate = self
     }
@@ -95,20 +89,5 @@ class DetailScene: SKScene, SKPhysicsContactDelegate {
             dy = -dy
             self.backgroundColor = SKColor.red
         }
-    }
-    
-    @objc func buttonPressed() {
-        if let view = self.view {
-            let gameScene = GameScene(size: self.size)
-            gameScene.scaleMode = self.scaleMode
-            let transition = SKTransition.fade(withDuration: 1.0)
-            view.presentScene(gameScene, transition: transition)
-        }
-        if let gameViewController = self.view?.window?.rootViewController as? GameViewController {
-            gameViewController.boardView.isHidden = false
-        }
-        var enemysetting = getEnemy(levelofGame: 1)
-        button.removeFromSuperview()
-        print("run")
     }
 }

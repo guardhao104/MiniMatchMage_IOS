@@ -86,7 +86,12 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        
+        gameInit(view: view)
+    }
+    
+    func gameInit(view: SKView) {
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
         // Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
         if let label = self.label {
@@ -298,6 +303,21 @@ class GameScene: SKScene {
             var ratio = CGFloat(Float(hp) / Float(maxHp))
             setHPBarValue(val:ratio, backgroundNode : playerBackgroundNd, progressNode: playerProgressNd)
         }
+        
+        if(defaultPlayer.health <= 0)
+        {
+            audioPlayer.stop()
+            if let view = self.view {
+                let endScene = EndScene(size: self.size)
+                endScene.scaleMode = self.scaleMode
+                let transition = SKTransition.fade(withDuration: 1.0)
+                view.presentScene(endScene, transition: transition)
+                button1.removeFromSuperview()
+                button2.removeFromSuperview()
+                button3.removeFromSuperview()
+            }
+        }
+
         
         if(enemyList.count == 3)
         {

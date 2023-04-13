@@ -17,6 +17,7 @@
 		42FF935C29E7BBE2007AD9D9 /* DetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FF935B29E7BBE2007AD9D9 /* DetailScene.swift */; };
 		42FF936229E7EBD3007AD9D9 /* soundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42FF936129E7EBD3007AD9D9 /* soundEffect.mp3 */; };
 		42FF936429E7EBEE007AD9D9 /* HesitantBlade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42FF936329E7EBEE007AD9D9 /* HesitantBlade.mp3 */; };
+		42FF936629E7F9A5007AD9D9 /* EndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FF936529E7F9A5007AD9D9 /* EndScene.swift */; };
 		A337B73329CC055600D103DD /* CombatSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A337B73229CC055600D103DD /* CombatSystem.swift */; };
 		A337B73529CC058000D103DD /* CombatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A337B73429CC058000D103DD /* CombatData.swift */; };
 		B6B1154629A46D2D00E0725C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1154529A46D2D00E0725C /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 		42FF935B29E7BBE2007AD9D9 /* DetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScene.swift; sourceTree = "<group>"; };
 		42FF936129E7EBD3007AD9D9 /* soundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundEffect.mp3; sourceTree = SOURCE_ROOT; };
 		42FF936329E7EBEE007AD9D9 /* HesitantBlade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HesitantBlade.mp3; sourceTree = SOURCE_ROOT; };
+		42FF936529E7F9A5007AD9D9 /* EndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndScene.swift; sourceTree = "<group>"; };
 		A337B73229CC055600D103DD /* CombatSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatSystem.swift; sourceTree = "<group>"; };
 		A337B73429CC058000D103DD /* CombatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatData.swift; sourceTree = "<group>"; };
 		B6B1154229A46D2D00E0725C /* MiniMatchMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMatchMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 				A337B73229CC055600D103DD /* CombatSystem.swift */,
 				B6B115A229D525E600E0725C /* Mage.swift */,
 				42FF935B29E7BBE2007AD9D9 /* DetailScene.swift */,
+				42FF936529E7F9A5007AD9D9 /* EndScene.swift */,
 			);
 			path = MiniMatchMage;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				B6B1156629A4919600E0725C /* Constants.swift in Sources */,
 				42A78FB829D29A480068FD5B /* WerewolfWarrior.swift in Sources */,
 				B6B1155D29A477B700E0725C /* BoardTile.swift in Sources */,
+				42FF936629E7F9A5007AD9D9 /* EndScene.swift in Sources */,
 				42A78FB629D294870068FD5B /* SkeletonBomber.swift in Sources */,
 				A337B73529CC058000D103DD /* CombatData.swift in Sources */,
 				B6B1154C29A46D2D00E0725C /* GameScene.swift in Sources */,
