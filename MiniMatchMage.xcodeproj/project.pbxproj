@@ -14,6 +14,8 @@
 		42A78FB429D28FBC0068FD5B /* Demon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB329D28FBB0068FD5B /* Demon.swift */; };
 		42A78FB629D294870068FD5B /* SkeletonBomber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB529D294870068FD5B /* SkeletonBomber.swift */; };
 		42A78FB829D29A480068FD5B /* WerewolfWarrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB729D29A480068FD5B /* WerewolfWarrior.swift */; };
+		42FF935C29E7BBE2007AD9D9 /* DetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FF935B29E7BBE2007AD9D9 /* DetailScene.swift */; };
+		42FF935E29E7BC0A007AD9D9 /* HesitantBlade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42FF935D29E7BC09007AD9D9 /* HesitantBlade.mp3 */; };
 		A337B73329CC055600D103DD /* CombatSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A337B73229CC055600D103DD /* CombatSystem.swift */; };
 		A337B73529CC058000D103DD /* CombatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A337B73429CC058000D103DD /* CombatData.swift */; };
 		B6B1154629A46D2D00E0725C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1154529A46D2D00E0725C /* AppDelegate.swift */; };
@@ -38,6 +40,8 @@
 		42A78FB329D28FBB0068FD5B /* Demon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demon.swift; sourceTree = "<group>"; };
 		42A78FB529D294870068FD5B /* SkeletonBomber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonBomber.swift; sourceTree = "<group>"; };
 		42A78FB729D29A480068FD5B /* WerewolfWarrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WerewolfWarrior.swift; sourceTree = "<group>"; };
+		42FF935B29E7BBE2007AD9D9 /* DetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScene.swift; sourceTree = "<group>"; };
+		42FF935D29E7BC09007AD9D9 /* HesitantBlade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HesitantBlade.mp3; path = ../../../../Desktop/HesitantBlade.mp3; sourceTree = "<group>"; };
 		A337B73229CC055600D103DD /* CombatSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatSystem.swift; sourceTree = "<group>"; };
 		A337B73429CC058000D103DD /* CombatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatData.swift; sourceTree = "<group>"; };
 		B6B1154229A46D2D00E0725C /* MiniMatchMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMatchMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +89,7 @@
 		B6B1154429A46D2D00E0725C /* MiniMatchMage */ = {
 			isa = PBXGroup;
 			children = (
+				42FF935D29E7BC09007AD9D9 /* HesitantBlade.mp3 */,
 				B6B1154529A46D2D00E0725C /* AppDelegate.swift */,
 				B6B1154729A46D2D00E0725C /* GameScene.sks */,
 				B6B1154929A46D2D00E0725C /* Actions.sks */,
@@ -106,6 +111,7 @@
 				A337B73429CC058000D103DD /* CombatData.swift */,
 				A337B73229CC055600D103DD /* CombatSystem.swift */,
 				B6B115A229D525E600E0725C /* Mage.swift */,
+				42FF935B29E7BBE2007AD9D9 /* DetailScene.swift */,
 			);
 			path = MiniMatchMage;
 			sourceTree = "<group>";
@@ -174,6 +180,7 @@
 				B6B115AC29D58D7F00E0725C /* Modules.scnassets in Resources */,
 				B6B1155629A46D2F00E0725C /* LaunchScreen.storyboard in Resources */,
 				B6B1154A29A46D2D00E0725C /* Actions.sks in Resources */,
+				42FF935E29E7BC0A007AD9D9 /* HesitantBlade.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +204,7 @@
 				42A78FB229D288340068FD5B /* CatWitch.swift in Sources */,
 				B6B1154E29A46D2D00E0725C /* GameViewController.swift in Sources */,
 				425DD74F29A6014A00733FB4 /* PlayerStateMachine.swift in Sources */,
+				42FF935C29E7BBE2007AD9D9 /* DetailScene.swift in Sources */,
 				B6B1154629A46D2D00E0725C /* AppDelegate.swift in Sources */,
 				B6B115A329D525E600E0725C /* Mage.swift in Sources */,
 			);
