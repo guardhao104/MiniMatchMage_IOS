@@ -347,6 +347,7 @@ class GameScene: SKScene {
             speed = enemyList[2]["speed"] as! Int
             str = String(speed)
             button3.setTitle(str, for: .normal)
+            flag = true
         }
         
         if(enemyList.count == 2)
@@ -388,7 +389,6 @@ class GameScene: SKScene {
             var speed = enemyList[0]["speed"] as! Int
             var str = String(speed)
             button3.setTitle(str, for: .normal)
-            flag = true
         }
         
         if (enemyList.count == 0 && flag == true)

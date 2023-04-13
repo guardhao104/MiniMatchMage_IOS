@@ -94,6 +94,9 @@ class GameViewController: UIViewController {
                 let geo = gem1.rootNode.childNodes[0].geometry
                 let gemNode = SCNNode(geometry: geo)
                 gemNode.position = SCNVector3(x: Float(column * 3 - 9), y: 0, z: Float(row * 3) - 1.5)
+                let rotateAction = SCNAction.rotate(by: .pi/2, around: SCNVector3(x: 0, y: 1, z: 0), duration: 1)
+                let repeatAction = SCNAction.repeatForever(rotateAction)
+                gemNode.runAction(repeatAction)
                 scene.rootNode.addChildNode(gemNode)
                 
                 let tileImage = UIImageView(image: UIImage(named:"none"))

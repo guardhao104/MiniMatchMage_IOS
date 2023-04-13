@@ -199,6 +199,7 @@ func endEnemyTurn(){
             newEnemyList.append(i)
         }
     };
+    newEnemyList.sort(by: >)
     for j in newEnemyList{
         enemyList.remove(at: j)
         print("the enemy ",newEnemyList, "is dead !!!!" )
