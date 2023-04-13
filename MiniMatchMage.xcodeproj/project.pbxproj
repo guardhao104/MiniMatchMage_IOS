@@ -15,7 +15,8 @@
 		42A78FB629D294870068FD5B /* SkeletonBomber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB529D294870068FD5B /* SkeletonBomber.swift */; };
 		42A78FB829D29A480068FD5B /* WerewolfWarrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A78FB729D29A480068FD5B /* WerewolfWarrior.swift */; };
 		42FF935C29E7BBE2007AD9D9 /* DetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FF935B29E7BBE2007AD9D9 /* DetailScene.swift */; };
-		42FF935E29E7BC0A007AD9D9 /* HesitantBlade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42FF935D29E7BC09007AD9D9 /* HesitantBlade.mp3 */; };
+		42FF936229E7EBD3007AD9D9 /* soundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42FF936129E7EBD3007AD9D9 /* soundEffect.mp3 */; };
+		42FF936429E7EBEE007AD9D9 /* HesitantBlade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42FF936329E7EBEE007AD9D9 /* HesitantBlade.mp3 */; };
 		A337B73329CC055600D103DD /* CombatSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A337B73229CC055600D103DD /* CombatSystem.swift */; };
 		A337B73529CC058000D103DD /* CombatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A337B73429CC058000D103DD /* CombatData.swift */; };
 		B6B1154629A46D2D00E0725C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1154529A46D2D00E0725C /* AppDelegate.swift */; };
@@ -41,7 +42,8 @@
 		42A78FB529D294870068FD5B /* SkeletonBomber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonBomber.swift; sourceTree = "<group>"; };
 		42A78FB729D29A480068FD5B /* WerewolfWarrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WerewolfWarrior.swift; sourceTree = "<group>"; };
 		42FF935B29E7BBE2007AD9D9 /* DetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScene.swift; sourceTree = "<group>"; };
-		42FF935D29E7BC09007AD9D9 /* HesitantBlade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HesitantBlade.mp3; path = ../../../../Desktop/HesitantBlade.mp3; sourceTree = "<group>"; };
+		42FF936129E7EBD3007AD9D9 /* soundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundEffect.mp3; sourceTree = SOURCE_ROOT; };
+		42FF936329E7EBEE007AD9D9 /* HesitantBlade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HesitantBlade.mp3; sourceTree = SOURCE_ROOT; };
 		A337B73229CC055600D103DD /* CombatSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatSystem.swift; sourceTree = "<group>"; };
 		A337B73429CC058000D103DD /* CombatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatData.swift; sourceTree = "<group>"; };
 		B6B1154229A46D2D00E0725C /* MiniMatchMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMatchMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,7 +91,8 @@
 		B6B1154429A46D2D00E0725C /* MiniMatchMage */ = {
 			isa = PBXGroup;
 			children = (
-				42FF935D29E7BC09007AD9D9 /* HesitantBlade.mp3 */,
+				42FF936329E7EBEE007AD9D9 /* HesitantBlade.mp3 */,
+				42FF936129E7EBD3007AD9D9 /* soundEffect.mp3 */,
 				B6B1154529A46D2D00E0725C /* AppDelegate.swift */,
 				B6B1154729A46D2D00E0725C /* GameScene.sks */,
 				B6B1154929A46D2D00E0725C /* Actions.sks */,
@@ -177,10 +180,11 @@
 				B6B1155129A46D2D00E0725C /* Main.storyboard in Resources */,
 				B6B1154829A46D2D00E0725C /* GameScene.sks in Resources */,
 				B6B1155329A46D2F00E0725C /* Assets.xcassets in Resources */,
+				42FF936229E7EBD3007AD9D9 /* soundEffect.mp3 in Resources */,
 				B6B115AC29D58D7F00E0725C /* Modules.scnassets in Resources */,
 				B6B1155629A46D2F00E0725C /* LaunchScreen.storyboard in Resources */,
 				B6B1154A29A46D2D00E0725C /* Actions.sks in Resources */,
-				42FF935E29E7BC0A007AD9D9 /* HesitantBlade.mp3 in Resources */,
+				42FF936429E7EBEE007AD9D9 /* HesitantBlade.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
