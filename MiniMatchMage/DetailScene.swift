@@ -45,12 +45,17 @@ class DetailScene: SKScene, SKPhysicsContactDelegate {
         
         // set number
         let score = defaultPlayer.health;
-        numberLabel.text = "Score: " + String(score) + " Last Score: " + String(DetailScene.record)
+        
+        if(DetailScene.record < score)
+        {
+            DetailScene.record = score
+        }
+        
+        numberLabel.text = "Score: " + String(score) + " The Highest Score: " + String(DetailScene.record)
         numberLabel.fontSize = 40
         numberLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(numberLabel)
         
-        DetailScene.record = score
         
         // set moving direction
         let randomAngle = CGFloat.random(in: 0..<CGFloat.pi*2)

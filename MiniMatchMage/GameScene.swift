@@ -222,6 +222,7 @@ class GameScene: SKScene {
             button1.removeFromSuperview()
             button2.removeFromSuperview()
             button3.removeFromSuperview()
+            enemyArr = []
         }
     }
     
