@@ -68,17 +68,43 @@ class Demon: Enemy {
     }
     
     // trigger enemy idle animation
-    func startIdleAnimation() {
+    override func startIdleAnimation() {
         super.triggerAnimation(texture:demonIdleTextures, key:"demonIdleTextures")
     }
     
     // trigger enemy attack animation
-    func startAttackAnimation() {
+    override func startAttackAnimation() {
         super.triggerAnimation(texture:demonAttackTextures, key:"demonAttackTextures")
+        
+        // set the animation duration
+        let attackAnimation = SKAction.animate(with: demonAttackTextures, timePerFrame: 0.1)
+        
+        // When the attack animation is complete, wait for 0.5 seconds, then start the idle animation
+        enemy.run(attackAnimation, completion: {
+            let waitAction = SKAction.wait(forDuration: 0.5)
+            let idleAction = SKAction.run {
+                self.startIdleAnimation()
+            }
+            let sequence = SKAction.sequence([waitAction, idleAction])
+            self.run(sequence)
+        })
     }
     
     // trigger animation when get hit
-    func startHitAnimation() {
+    override func startHitAnimation() {
         super.triggerAnimation(texture:demonHitTextures, key:"demonHitTextures")
+        
+        // set the animation duration
+        let attackAnimation = SKAction.animate(with: demonHitTextures, timePerFrame: 0.1)
+        
+        // When the attack animation is complete, wait for 0.5 seconds, then start the idle animation
+        enemy.run(attackAnimation, completion: {
+            let waitAction = SKAction.wait(forDuration: 0.5)
+            let idleAction = SKAction.run {
+                self.startIdleAnimation()
+            }
+            let sequence = SKAction.sequence([waitAction, idleAction])
+            self.run(sequence)
+        })
     }
 }

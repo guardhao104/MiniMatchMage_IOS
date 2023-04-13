@@ -7,6 +7,15 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
+import UIKit
+
+var audioPlayer = AVAudioPlayer()
+
+// mage global variable
+var mageObj = Mage()
+// enemy global variable
+var enemyArr: [Enemy] = []
 
 class GameScene: SKScene {
     
@@ -29,6 +38,40 @@ class GameScene: SKScene {
     private let werewolfWarrior = WerewolfWarrior()
     private let werewolfWarrior1 = WerewolfWarrior()
     private let werewolfWarrior2 = WerewolfWarrior()
+    var button1 = UIButton()
+    var button2 = UIButton()
+    var button3 = UIButton()
+    let image = UIImage(named: "turnCounter")
+    private var flag:Bool = false
+    
+    // create SKCropNode object
+    let cropNode = SKCropNode()
+
+    // create a background spriteNode as background
+    let backgroundNode = SKSpriteNode(color: .lightGray, size: CGSize(width: 100, height: 20))
+    // create a front spriteNode as progress bar
+    let progressNode = SKSpriteNode(color: .red, size: CGSize(width: 100, height: 20))
+    
+    // create SKCropNode object
+    let cropNd1 = SKCropNode()
+    // create a background spriteNode as background
+    let backgroundNd1 = SKSpriteNode(color: .lightGray, size: CGSize(width: 100, height: 20))
+    // create a front spriteNode as progress bar
+    let progressNd1 = SKSpriteNode(color: .red, size: CGSize(width: 100, height: 20))
+    
+    // create SKCropNode object
+    let cropNd2 = SKCropNode()
+    // create a background spriteNode as background
+    let backgroundNd2 = SKSpriteNode(color: .lightGray, size: CGSize(width: 100, height: 20))
+    // create a front spriteNode as progress bar
+    let progressNd2 = SKSpriteNode(color: .red, size: CGSize(width: 100, height: 20))
+    
+    // create SKCropNode object
+    let playerCropNd = SKCropNode()
+    // create a background spriteNode as background
+    let playerBackgroundNd = SKSpriteNode(color: .lightGray, size: CGSize(width: 100, height: 20))
+    // create a front spriteNode as progress bar
+    let playerProgressNd = SKSpriteNode(color: .red, size: CGSize(width: 100, height: 20))
     
     // set background image onto screen
     func setBackgroundImage() {
@@ -67,64 +110,139 @@ class GameScene: SKScene {
         
         // setup the player with idle animation
         mage.setup(size:CGSize(width: 350, height: 350), pos: CGPoint(x: -250, y: 100))
+        mageObj = mage
         addChild(mage)
         mage.startPlayerIdleAnimation()
 
         // setup the enemies with idle animation
-//        fairy.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
-//        fairy1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
-//        fairy2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
-//        addChild(fairy)
-//        addChild(fairy1)
-//        addChild(fairy2)
-        
-//        catWitch.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
-//        catWitch1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
-//        catWitch2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
-//        addChild(catWitch)
-//        addChild(catWitch1)
-//        addChild(catWitch2)
-//        catWitch.startIdleAnimation()
-//        catWitch1.startAttackAnimation()
-//        catWitch2.startHitAnimation()
-        
-//        demon.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
-//        demon1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
-//        demon2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
-//
-//        addChild(demon)
-//        addChild(demon1)
-//        addChild(demon2)
-//
-//        demon.startIdleAnimation()
-//        demon1.startAttackAnimation()
-//        demon2.startHitAnimation()
-        
-//        skeletonBomber.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
-//        skeletonBomber1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
-//        skeletonBomber2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
-//
-//        addChild(skeletonBomber)
-//        addChild(skeletonBomber1)
-//        addChild(skeletonBomber2)
-//
-//        skeletonBomber.startIdleAnimation()
-//        skeletonBomber1.startAttackAnimation()
-//        skeletonBomber2.startHitAnimation()
-        
-        werewolfWarrior.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 120, y: 100))
-        werewolfWarrior1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 200, y: 100))
-        werewolfWarrior2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 280, y: 100))
-
+        werewolfWarrior.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 100, y: 100))
+        enemyArr.append(werewolfWarrior)
         addChild(werewolfWarrior)
-        addChild(werewolfWarrior1)
-        addChild(werewolfWarrior2)
-
         werewolfWarrior.startIdleAnimation()
-        werewolfWarrior1.startAttackAnimation()
-        werewolfWarrior2.startHitAnimation()
+        skeletonBomber1.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 250, y: 100))
+        enemyArr.append(skeletonBomber1)
+        addChild(skeletonBomber1)
+        skeletonBomber1.startIdleAnimation()
+        fairy2.setupEnemy(width: 250, height: 250, pos: CGPoint(x: 400, y: 100))
+        enemyArr.append(fairy2)
+        addChild(fairy2)
+        fairy2.startIdleAnimation()
+        
+        addHPBar(cropNode: cropNd1, backgroundNode: backgroundNd1, progressNode: progressNd1, posX: 140, posY: -20)
+
+        cropNode.maskNode = backgroundNode
+        cropNode.addChild(progressNode)
+        addChild(cropNode)
+        let progress: CGFloat = 1
+        progressNode.size.width = backgroundNode.size.width * progress
+        cropNode.position = CGPoint(x:290, y:-20)
+        
+        cropNd2.maskNode = backgroundNd2
+        cropNd2.addChild(progressNd2)
+        addChild(cropNd2)
+        let progress2: CGFloat = 1
+        progressNd2.size.width = backgroundNd2.size.width * progress2
+        cropNd2.position = CGPoint(x:450, y:-20)
+        
+        playerCropNd.maskNode = playerBackgroundNd
+        playerCropNd.addChild(playerProgressNd)
+        addChild(playerCropNd)
+        let playerProgress: CGFloat = 1
+        playerProgressNd.size.width = playerBackgroundNd.size.width * playerProgress
+        playerCropNd.position = CGPoint(x:-240, y:-20)
+        
+        let buttonContainerView = UIView(frame: CGRect(x: size.width/2 - 100, y: size.height/2 - 25, width: 200, height: 50))
+        buttonContainerView.backgroundColor = .clear
+        view.addSubview(buttonContainerView)
+        
+        // create the button and add it to the container view
+        button1.frame = CGRect(x: -40, y: -290, width: 50, height: 50)
+        button1.setTitle("1", for: .normal)
+        button1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        button1.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button1.backgroundColor = .white
+        button1.setTitleColor(.black, for: .normal)
+        button1.setBackgroundImage(image, for: .normal)
+        buttonContainerView.addSubview(button1)
+        
+        let buttonContainerView2 = UIView(frame: CGRect(x: size.width/2 - 100, y: size.height/2 - 25, width: 200, height: 50))
+        buttonContainerView2.backgroundColor = .clear
+        view.addSubview(buttonContainerView2)
+       
+        // create the button and add it to the container view
+        button2.frame = CGRect(x: 70, y: -290, width: 50, height: 50)
+        button2.setTitle("2", for: .normal)
+        button2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        button2.backgroundColor = .white
+        button2.setTitleColor(.black, for: .normal)
+        button2.setBackgroundImage(image, for: .normal)
+        buttonContainerView.addSubview(button2)
+       
+        let buttonContainerView3 = UIView(frame: CGRect(x: size.width/2 - 100, y: size.height/2 - 25, width: 200, height: 50))
+        buttonContainerView3.backgroundColor = .clear
+        view.addSubview(buttonContainerView3)
+       
+        // create the button and add it to the container view
+        button3.frame = CGRect(x: 180, y: -290, width: 50, height: 50)
+        button3.setTitle("3", for: .normal)
+        button3.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        button3.backgroundColor = .white
+        button3.setTitleColor(.black, for: .normal)
+        button3.setBackgroundImage(image, for: .normal)
+        buttonContainerView.addSubview(button3)
+        
+        
+        // play bgm
+        let sound = Bundle.main.path(forResource: "HesitantBlade", ofType: "mp3")
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+        } catch {
+            print(error)
+        }
+
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
     }
     
+    // switch scene to DetailScene mainwhile stop bgm and remove all btns
+    @objc func switchToDetailScene() {
+        audioPlayer.stop()
+        if let view = self.view {
+            let detailScene = DetailScene(size: self.size)
+            detailScene.scaleMode = self.scaleMode
+            let transition = SKTransition.fade(withDuration: 1.0)
+            view.presentScene(detailScene, transition: transition)
+            button1.removeFromSuperview()
+            button2.removeFromSuperview()
+            button3.removeFromSuperview()
+        }
+    }
+    
+    @objc func buttonPressed() {
+        var enemy1 = enemyList[0]
+        print(enemy1)
+    }
+    
+    @objc func buttonTapped() {
+        print("Button Tapped")
+    }
+
+    func addHPBar(cropNode:SKCropNode, backgroundNode:SKSpriteNode, progressNode:SKSpriteNode, posX:CGFloat, posY:CGFloat) {
+        cropNode.maskNode = backgroundNode
+        cropNode.addChild(progressNode)
+        addChild(cropNode)
+        // Set the progress value of a progress bar
+        let progress: CGFloat = 1
+        progressNode.size.width = backgroundNode.size.width * progress
+
+        // Set hp bar position
+        cropNode.position = CGPoint(x:140, y:-20)
+    }
+    
+    func setHPBarValue(val:CGFloat, backgroundNode:SKSpriteNode, progressNode:SKSpriteNode) {
+        let progress: CGFloat = val
+        progressNode.size.width = backgroundNode.size.width * progress
+    }
     
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
@@ -156,13 +274,6 @@ class GameScene: SKScene {
         }
 
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-        
-//        for touch in touches {
-//            let location = touch.location(in: self)
-//            if enemy1.contains(location) {
-//                startEnemy1AttackAnimation()
-//            }
-//        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -177,9 +288,92 @@ class GameScene: SKScene {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        if(defaultPlayer.health > 0)
+        {
+            var maxHp = defaultPlayer.maxhealth as! Int
+            var hp = defaultPlayer.health as! Int
+            var ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : playerBackgroundNd, progressNode: playerProgressNd)
+        }
         
+        if(enemyList.count == 3)
+        {
+            var maxHp = enemyList[0]["maxHealth"] as! Int
+            var hp = enemyList[0]["health"] as! Int
+            var ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : backgroundNd1, progressNode: progressNd1)
+           
+            maxHp = enemyList[1]["maxHealth"] as! Int
+            hp = enemyList[1]["health"] as! Int
+            ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : backgroundNode, progressNode: progressNode)
+            
+            maxHp = enemyList[2]["maxHealth"] as! Int
+            hp = enemyList[2]["health"] as! Int
+            ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : backgroundNd2, progressNode: progressNd2)
+            
+            var speed = enemyList[0]["speed"] as! Int
+            var str = String(speed)
+            button1.setTitle(str, for: .normal)
+            
+            speed = enemyList[1]["speed"] as! Int
+            str = String(speed)
+            button2.setTitle(str, for: .normal)
+            
+            speed = enemyList[2]["speed"] as! Int
+            str = String(speed)
+            button3.setTitle(str, for: .normal)
+        }
+        
+        if(enemyList.count == 2)
+        {
+            setHPBarValue(val: 0.0, backgroundNode: backgroundNd1, progressNode: progressNd1)
+            
+            var maxHp = enemyList[0]["maxHealth"] as! Int
+            var hp = enemyList[0]["health"] as! Int
+            var ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : backgroundNode, progressNode: progressNode)
+           
+            maxHp = enemyList[1]["maxHealth"] as! Int
+            hp = enemyList[1]["health"] as! Int
+            ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : backgroundNd2, progressNode: progressNd2)
+            
+            button1.setTitle("X", for: .normal)
+            
+            var speed = enemyList[0]["speed"] as! Int
+            var str = String(speed)
+            button2.setTitle(str, for: .normal)
+            
+            speed = enemyList[1]["speed"] as! Int
+            str = String(speed)
+            button3.setTitle(str, for: .normal)
+        }
+        
+        if(enemyList.count == 1)
+        {
+            setHPBarValue(val:0.0, backgroundNode : backgroundNode, progressNode: progressNode)
+            
+            var maxHp = enemyList[0]["maxHealth"] as! Int
+            var hp = enemyList[0]["health"] as! Int
+            var ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : backgroundNd2, progressNode: progressNd2)
+            
+            button2.setTitle("X", for: .normal)
+            
+            var speed = enemyList[0]["speed"] as! Int
+            var str = String(speed)
+            button3.setTitle(str, for: .normal)
+            flag = true
+        }
+        
+        if (enemyList.count == 0 && flag == true)
+        {
+            setHPBarValue(val:0.0, backgroundNode : backgroundNd2, progressNode: progressNd2)
+            button3.setTitle("X", for: .normal)
+            switchToDetailScene();
+        }
     }
 }

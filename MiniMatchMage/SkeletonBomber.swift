@@ -72,17 +72,43 @@ class SkeletonBomber: Enemy {
     }
     
     // trigger enemy idle animation
-    func startIdleAnimation() {
+    override func startIdleAnimation() {
         super.triggerAnimation(texture:skeletonBomberIdleTextures, key:"skeletonBomberIdleTextures")
     }
     
     // trigger enemy attack animation
-    func startAttackAnimation() {
+    override func startAttackAnimation() {
         super.triggerAnimation(texture:skeletonBomberAttackTextures, key:"skeletonBomberAttackTextures")
+        
+        // set the animation duration
+        let attackAnimation = SKAction.animate(with: skeletonBomberAttackTextures, timePerFrame: 0.1)
+        
+        // When the attack animation is complete, wait for 0.5 seconds, then start the idle animation
+        enemy.run(attackAnimation, completion: {
+            let waitAction = SKAction.wait(forDuration: 0.5)
+            let idleAction = SKAction.run {
+                self.startIdleAnimation()
+            }
+            let sequence = SKAction.sequence([waitAction, idleAction])
+            self.run(sequence)
+        })
     }
     
     // trigger animation when get hit
-    func startHitAnimation() {
+    override func startHitAnimation() {
         super.triggerAnimation(texture:skeletonBomberHitTextures, key:"skeletonBomberHitTextures")
+        
+        // set the animation duration
+        let attackAnimation = SKAction.animate(with: skeletonBomberHitTextures, timePerFrame: 0.1)
+        
+        // When the attack animation is complete, wait for 0.5 seconds, then start the idle animation
+        enemy.run(attackAnimation, completion: {
+            let waitAction = SKAction.wait(forDuration: 0.5)
+            let idleAction = SKAction.run {
+                self.startIdleAnimation()
+            }
+            let sequence = SKAction.sequence([waitAction, idleAction])
+            self.run(sequence)
+        })
     }
 }

@@ -68,17 +68,43 @@ class CatWitch: Enemy {
     }
     
     // trigger enemy idle animation
-    func startIdleAnimation() {
+    override func startIdleAnimation() {
         super.triggerAnimation(texture:catWitchIdleTextures, key:"catWitchIdleTextures")
     }
     
     // trigger enemy attack animation
-    func startAttackAnimation() {
+    override func startAttackAnimation() {
         super.triggerAnimation(texture:catWitchAttackTextures, key:"catWitchAttackTextures")
+        
+        // set the animation duration
+        let attackAnimation = SKAction.animate(with: catWitchAttackTextures, timePerFrame: 0.1)
+        
+        // When the attack animation is complete, wait for 0.5 seconds, then start the idle animation
+        enemy.run(attackAnimation, completion: {
+            let waitAction = SKAction.wait(forDuration: 0.5)
+            let idleAction = SKAction.run {
+                self.startIdleAnimation()
+            }
+            let sequence = SKAction.sequence([waitAction, idleAction])
+            self.run(sequence)
+        })
     }
     
     // trigger animation when get hit
-    func startHitAnimation() {
+    override func startHitAnimation() {
         super.triggerAnimation(texture:catWitchHitTextures, key:"catWitchHitTextures")
+        
+        // set the animation duration
+        let attackAnimation = SKAction.animate(with: catWitchHitTextures, timePerFrame: 0.1)
+        
+        // When the attack animation is complete, wait for 0.5 seconds, then start the idle animation
+        enemy.run(attackAnimation, completion: {
+            let waitAction = SKAction.wait(forDuration: 0.5)
+            let idleAction = SKAction.run {
+                self.startIdleAnimation()
+            }
+            let sequence = SKAction.sequence([waitAction, idleAction])
+            self.run(sequence)
+        })
     }
 }
