@@ -66,6 +66,13 @@ class GameScene: SKScene {
     // create a front spriteNode as progress bar
     let progressNd2 = SKSpriteNode(color: .red, size: CGSize(width: 100, height: 20))
     
+    // create SKCropNode object
+    let playerCropNd = SKCropNode()
+    // create a background spriteNode as background
+    let playerBackgroundNd = SKSpriteNode(color: .lightGray, size: CGSize(width: 100, height: 20))
+    // create a front spriteNode as progress bar
+    let playerProgressNd = SKSpriteNode(color: .red, size: CGSize(width: 100, height: 20))
+    
     // set background image onto screen
     func setBackgroundImage() {
         background.position = CGPoint(x: 0, y: 260)
@@ -136,6 +143,13 @@ class GameScene: SKScene {
         let progress2: CGFloat = 1
         progressNd2.size.width = backgroundNd2.size.width * progress2
         cropNd2.position = CGPoint(x:450, y:-20)
+        
+        playerCropNd.maskNode = playerBackgroundNd
+        playerCropNd.addChild(playerProgressNd)
+        addChild(playerCropNd)
+        let playerProgress: CGFloat = 1
+        playerProgressNd.size.width = playerBackgroundNd.size.width * playerProgress
+        playerCropNd.position = CGPoint(x:-240, y:-20)
         
         let buttonContainerView = UIView(frame: CGRect(x: size.width/2 - 100, y: size.height/2 - 25, width: 200, height: 50))
         buttonContainerView.backgroundColor = .clear
@@ -275,6 +289,13 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        if(defaultPlayer.health > 0)
+        {
+            var maxHp = defaultPlayer.maxhealth as! Int
+            var hp = defaultPlayer.health as! Int
+            var ratio = CGFloat(Float(hp) / Float(maxHp))
+            setHPBarValue(val:ratio, backgroundNode : playerBackgroundNd, progressNode: playerProgressNd)
+        }
         
         if(enemyList.count == 3)
         {
