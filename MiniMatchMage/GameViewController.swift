@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
     var firstTileRow: Int = 0
     var firstTileColumn: Int = 0
     
-    @IBOutlet weak var boardView: SCNView!
+    @IBOutlet public weak var boardView: SCNView!
     
     var scene: SCNScene = SCNScene(named: "Modules.scnassets/diamonds1.scn")!
     var gem1: SCNScene = SCNScene(named: "Modules.scnassets/gem1.scn")!
@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
+
                 // Present the scene
                 view.presentScene(scene)
             }

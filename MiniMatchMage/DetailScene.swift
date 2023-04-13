@@ -14,6 +14,11 @@ class DetailScene: SKScene, SKPhysicsContactDelegate {
     var dy: CGFloat = 0
     
     override func didMove(to view: SKView) {
+        
+        if let gameViewController = self.view?.window?.rootViewController as? GameViewController {
+            gameViewController.boardView.isHidden = true
+        }
+
         self.backgroundColor = SKColor.white
         self.backgroundColor = SKColor.clear
         
@@ -24,7 +29,7 @@ class DetailScene: SKScene, SKPhysicsContactDelegate {
         
         // set number
         let score = defaultPlayer.health;
-        numberLabel.text = String(score)
+        numberLabel.text = "Your Score: " + String(score)
         numberLabel.fontSize = 40
         numberLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(numberLabel)

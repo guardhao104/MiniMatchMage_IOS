@@ -19,6 +19,7 @@ var enemyArr: [Enemy] = []
 
 class GameScene: SKScene {
     
+    var boardView: SCNView!
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     private var background = SKSpriteNode(imageNamed: "bg1.jpeg") // background image
@@ -41,6 +42,7 @@ class GameScene: SKScene {
     var button1 = UIButton()
     var button2 = UIButton()
     var button3 = UIButton()
+    
     let image = UIImage(named: "turnCounter")
     private var flag:Bool = false
     
